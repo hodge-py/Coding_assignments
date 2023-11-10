@@ -1,25 +1,20 @@
-def is_Prime(n):
-    if n == 2 or n == 3:
-        return f"{n} is a Prime Number"
-    elif n == 1:
-        return f"{n} is not a Prime Number"
 
-    prime_test1 = (n+1)
-    prime_test2 = (n-1)
-
-    if prime_test1 % 6 == 0 or prime_test2 % 6 == 0:
+def is_Prime(n): # n is the parameter for the function, the input from the user
+    if n == 2 or n == 3 or n == 5 or n == 1 or n == 7: #checks the under 10 prime numbers if they are chosen
         return f"{n} is a Prime Number"
+    for x in range(2,10): #loops through 2 to 9 to determine if the number is divisible
+        if n % x == 0:
+            return f"{n} is not a Prime Number" #if the number is divisible, this statement is returned
     
-    else:
-        return f"{n} is not a Prime Number"
+    return f"{n} is a Prime number" #else if the number is not divisible at all, then this statement is returned
 
 def Main():
-    user_num = int(input("Please Enter a number to check if it is a prime number "))
+    user_num = int(input("Please Enter a number to check if it is a prime number ")) #user inputs a number and that is converted from str to int
 
-    output = is_Prime(user_num)
+    output = is_Prime(user_num) #this is the function to determine if the number inputted was a prime number, a statement is returned
 
-    print(output)
+    print(output) #prints the statement that was returned from the is_Prime function
 
 
 
-Main()
+Main() #runs the Main function

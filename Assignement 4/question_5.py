@@ -11,7 +11,7 @@ def add():
         print("Value is zero, END")
         return 'n'
 
-    print(f"The value now is {subsetsum}")
+    print(f"The value is now {subsetsum}")
     return 'y'
 
 def randomgen():
@@ -27,7 +27,6 @@ def Main():
         #val_1 = int(input("Press Enter to continue ")) #User Inputs a value that is converted from string to int
         
         condition = add() 
-
 
 
 
