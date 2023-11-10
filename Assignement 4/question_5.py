@@ -11,7 +11,7 @@ def add(): #function to add up the random values
         print("Value is zero, END")
         return 'n'
 
-    print(f"The value is now {subsetsum}")
+    print(f"The value is now {subsetsum}") #print the new value of subsetsum after adding the random variable
     return 'y'
 
 def randomgen():
