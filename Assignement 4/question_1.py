@@ -1,5 +1,7 @@
 
 def is_Prime(n): # n is the parameter for the function, the input from the user
+    if n < 1: #input validation, to check if the number is less than one
+        return "Prime Numbers are greater than 0, please enter a valid input"
     if n == 2 or n == 3 or n == 5 or n == 1 or n == 7: #checks the under 10 prime numbers if they are chosen
         return f"{n} is a Prime Number"
     for x in range(2,10): #loops through 2 to 9 to determine if the number is divisible
