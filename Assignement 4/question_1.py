@@ -11,7 +11,14 @@ def is_Prime(n): # n is the parameter for the function, the input from the user
     return f"{n} is a Prime number" #else if the number is not divisible at all, then this statement is returned
 
 def Main():
-    user_num = int(input("Please Enter a number to check if it is a prime number ")) #user inputs a number and that is converted from str to int
+    user_num = input("Please Enter a number to check if it is a prime number ") #user inputs a number and that is converted from str to int
+
+    if user_num == '': #input validation, checks if user entered a number
+        print("Please enter a number and not blank")
+        return 0
+    else:
+        user_num = int(user_num)
+
 
     output = is_Prime(user_num) #this is the function to determine if the number inputted was a prime number, a statement is returned
 

@@ -2,7 +2,13 @@ import random #import the random module for use
 
 
 def check_guess(target_val):
-    guess = int(input("Please guess a number between 1 and 1000: ")) #user inputs a number between 1 and 1000
+    guess = input("Please guess a number between 1 and 1000: ") #user inputs a number between 1 and 1000
+
+    if guess == '': #input validation, checks if user entered a number
+        print("Please Enter a number")
+        return 'n'
+    
+    guess = int(guess)
     
     if guess < 1 or guess > 1000: #insures the input is valid for the function
         print("Invalid input, Please input a value between 1 and 1000")
