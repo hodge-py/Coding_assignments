@@ -15,17 +15,17 @@ def add(): #function to add up the random values
     return 'y'
 
 def randomgen():
-    rand = random.randint(-25,25)
+    rand = random.randint(-25,25) #random assigns a variable with a value between -25 to 25
 
     return rand
 
 def Main():
     
-    condition = 'y'
+    condition = 'y' #condition for keeping the loop going
 
-    while condition == 'y':
+    while condition == 'y': #while loop to continuously loop until the value hits zero
         condition = add() 
 
 
 
-Main()
+Main() #runs the main function with other functions in it.
