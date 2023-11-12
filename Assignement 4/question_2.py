@@ -1,10 +1,10 @@
 import random #import the random module for use
 
 def is_Prime(n): # n is the parameter for the function, the input from the user
-    if n == 2 or n == 3 or n == 5 or n == 1 or n == 7: #checks the under 10 prime numbers if they are chosen
+    if n == 2 or n == 3 or n == 5 or n == 1 or n == 7 or n == 11: #checks the under 10 prime numbers if they are chosen
         print(f"{n} is a Prime Number")
         return 'n'
-    for x in range(2,10): #loops through 2 to 9 to determine if the number is divisible
+    for x in range(2,12): #loops through 2 to 9 to determine if the number is divisible
         if n % x == 0:
             print(f"{n} is not a Prime Number") #if the number is divisible, then this statement is printed
             return 'y'
