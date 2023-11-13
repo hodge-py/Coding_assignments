@@ -16,6 +16,9 @@ def Main():
     if user_num == '': #input validation, checks if user entered a number
         print("Please enter a number and not blank")
         return 0
+    elif user_num.isdigit() == False:
+        print("Please enter a number and not a character")
+        return 0
     else:
         user_num = int(user_num)
 
