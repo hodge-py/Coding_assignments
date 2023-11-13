@@ -19,12 +19,16 @@ def Main():
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         if val_1.isdigit() == False: #input check, determines if a value was inputted
 =======
         if val_1 == '': #input check, determines if a value was inputted
 >>>>>>> parent of 6aa8755 (s)
             print("Error, please enter a value")
         elif int(val_1) > 10 or int(val_1) < -10: #checks if the inputted value is between 10 and -10, exclusively
+=======
+        if val_1 > 10 or val_1 < -10: #checks if the inputted value is between 10 and -10, exclusively
+>>>>>>> parent of 4ee1b32 (changes)
 =======
         if val_1 > 10 or val_1 < -10: #checks if the inputted value is between 10 and -10, exclusively
 >>>>>>> parent of 4ee1b32 (changes)

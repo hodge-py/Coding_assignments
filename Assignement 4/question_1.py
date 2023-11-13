@@ -12,6 +12,7 @@ def is_Prime(n): # n is the parameter for the function, the input from the user
 
 def Main():
 <<<<<<< HEAD
+<<<<<<< HEAD
     user_num = input("Please Enter a number to check if it is a prime number ") #user inputs a number and that is converted from str to int
 
     if user_num == '': #input validation, checks if user entered a number
@@ -20,6 +21,9 @@ def Main():
     else:
         user_num = int(user_num)
 
+=======
+    user_num = int(input("Please Enter a number to check if it is a prime number ")) #user inputs a number and that is converted from str to int
+>>>>>>> parent of 4ee1b32 (changes)
 =======
     user_num = int(input("Please Enter a number to check if it is a prime number ")) #user inputs a number and that is converted from str to int
 >>>>>>> parent of 4ee1b32 (changes)

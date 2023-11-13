@@ -3,6 +3,7 @@ import random #import the random module for use
 
 def check_guess(target_val):
 <<<<<<< HEAD
+<<<<<<< HEAD
     guess = input("Please guess a number between 1 and 1000: ") #user inputs a number between 1 and 1000
 
     if guess == '': #input validation, checks if user entered a number
@@ -10,6 +11,9 @@ def check_guess(target_val):
         return 'n'
     
     guess = int(guess)
+=======
+    guess = int(input("Please guess a number between 1 and 1000: ")) #user inputs a number between 1 and 1000
+>>>>>>> parent of 4ee1b32 (changes)
 =======
     guess = int(input("Please guess a number between 1 and 1000: ")) #user inputs a number between 1 and 1000
 >>>>>>> parent of 4ee1b32 (changes)
