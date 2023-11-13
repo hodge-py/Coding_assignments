@@ -5,7 +5,7 @@ def check_guess(target_val):
 <<<<<<< HEAD
     guess = input("Please guess a number between 1 and 1000: ") #user inputs a number between 1 and 1000
 
-    if guess.isdigit() == False: #input validation, checks if user entered a number
+    if guess == '': #input validation, checks if user entered a number
         print("Please Enter a number")
         return 'n'
     
