@@ -15,30 +15,27 @@ def Main():
     condition = 'y'
 
     while condition == 'y':
-        val_1 = int(input("Please enter a number between -10 and 10 ")) #User Inputs a value that is converted from string to int
+        is_number = 'yes'
+        
+        val_1 = input("Please enter a number between -10 and 10 ") #User Inputs a value that is converted from string to int
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        if val_1.isdigit() == False: #input check, determines if a value was inputted
-=======
-        if val_1 == '': #input check, determines if a value was inputted
->>>>>>> parent of 6aa8755 (s)
-            print("Error, please enter a value")
-        elif int(val_1) > 10 or int(val_1) < -10: #checks if the inputted value is between 10 and -10, exclusively
-=======
-        if val_1 > 10 or val_1 < -10: #checks if the inputted value is between 10 and -10, exclusively
->>>>>>> parent of 4ee1b32 (changes)
-=======
-        if val_1 > 10 or val_1 < -10: #checks if the inputted value is between 10 and -10, exclusively
->>>>>>> parent of 4ee1b32 (changes)
-=======
-        if val_1 > 10 or val_1 < -10: #checks if the inputted value is between 10 and -10, exclusively
->>>>>>> parent of 4ee1b32 (changes)
-            print("Error, please enter a valid value")
+        for x in val_1: #this works by looping through the string, if any of of characters are not a valid unicode number than zero is returned and the statement is printed
+            if ord(x) not in range(48, 58) and ord(x) != 45:
+                is_number = 'no'
+            elif ord(x) == 45 and len(val_1) == 1: #checks if the user just entered a minus sign and nothing else
+                is_number = 'no'
+            else:
+                pass
+        
+
+        if is_number == 'yes':
+            if int(val_1) > 10 or int(val_1) < -10: #checks if the inputted value is between 10 and -10, exclusively
+                print("Error, please enter a valid value")
+            else: #if input passes checks then it continues on to the function
+                val_1 = int(val_1)
+                condition = add(val_1)
         else:
-            condition = add(val_1) 
+            print("Not a number, please enter a valid number")
 
 
 

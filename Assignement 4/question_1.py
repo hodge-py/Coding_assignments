@@ -11,26 +11,18 @@ def is_Prime(n): # n is the parameter for the function, the input from the user
     return f"{n} is a Prime number" #else if the number is not divisible at all, then this statement is returned
 
 def Main():
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     user_num = input("Please Enter a number to check if it is a prime number ") #user inputs a number and that is converted from str to int
 
-    if user_num == '': #input validation, checks if user entered a number
-        print("Please enter a number and not blank")
-        return 0
-    else:
-        user_num = int(user_num)
 
-=======
-    user_num = int(input("Please Enter a number to check if it is a prime number ")) #user inputs a number and that is converted from str to int
->>>>>>> parent of 4ee1b32 (changes)
-=======
-    user_num = int(input("Please Enter a number to check if it is a prime number ")) #user inputs a number and that is converted from str to int
->>>>>>> parent of 4ee1b32 (changes)
-=======
-    user_num = int(input("Please Enter a number to check if it is a prime number ")) #user inputs a number and that is converted from str to int
->>>>>>> parent of 4ee1b32 (changes)
+    for x in user_num: #this works by looping through the string, if any of of characters are not a valid unicode number than zero is returned, the statement is printed and the function ends
+        if ord(x) not in range(48, 58):
+            print("not a number, please enter a valid number between 0-9")
+            return 0
+        else:
+            pass
+
+    user_num = int(user_num)
+
 
     output = is_Prime(user_num) #this is the function to determine if the number inputted was a prime number, a statement is returned
 
