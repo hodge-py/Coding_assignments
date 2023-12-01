@@ -1,0 +1,156 @@
+Homework 5: General
+
+Due Date: Dec 11th Monday, 11.59pm
+
+Python Library Functions allowed: 
+
+len(), 
+print(), 
+list(),  
+str(), 
+input(), 
+int(), 
+type(), 
+chr(), 
+ord() 
+float().
+randint()
+random()
+open()
+read()
+write()
+readline()
+close()
+rstrip()
+split()
+
+Libraries allowed: random, math. All functions in these packages are allowed as well.
+
+List functions allowed: append(), replace(), remove(), index() and len()
+List indexing: L[0], L[1],... to refer to the list values.
+
+Grading Emphasis: Input validation, error checking and well commented logically correct programs.
+
+Submissions format accepted: 
+
+1. Type in or copy the python scripts into BlackBoard. 
+
+Or
+ 
+2. Upload the individual python files by naming them with the question numbers.
+
+3. Please DO NOT copy the questions into your submissions. Just make sure to number your answers correctly.
+
+
+Questions (Write Python programs for all the questions that follow)
+
+
+Q1. A file mixeddata.txt is provided. The file contains different types of data: integer values, floating point values, alphabetic, and alphanumeric (strings that are combination of alphabets and numbers). Each data item is in a different line. 
+
+ Create a separate list for each data type and print out the lists to the screen. You are not permitted to use issnumeric(), isdigit() or isalpha() functions for this program. Use the input validation methods from the previous homeworks to determine the type of each data item. All input validation must be performed in separate functions, i.e., one function per data type (float, integer, alphabetic, and alphanumeric).
+
+E.g, If mixeddata.txt contains
+
+99
+abc
+11
+ccdda
+aa99
+bb
+78.1
+a173
+89.33
+
+Output should display:
+
+List of integers;         [99, 11]
+List of strings:          [abc, ccdda, bb]
+List of floating points:  [78.1, 89.33]
+List of alphanumerics:    [aa99, a173]
+
+
+
+Q2.  Create a file called employeedb.txt. The program should ask the user for the number of records to be inserted. Each record should contain the following fields: <Name, Age, EmployeeID, Years of Service>. The user should now proceed to enter the record data one field value at a time. 
+
+Note that, input validation is required. For instance, if the user enters an invalid value for the age field (alphanumeric, floating point, or negative values or special characters), the program should prompt the user to input a valid age value. The same applies to "Years of Service". The EmployID can be something like ABC222 (alphanumeric). 
+
+One all field values are provided, the program should write a valid record into the employeedb.txt file. Once the total number of records is processed the program should quit (no need for any status display).
+
+E.g., Sample record entry scenario
+
+
+(Display) Number of records to enter: 2
+(Display) Entering Record 1
+
+(Input Prompt) Enter Name: Hello
+(Input Prompt) Enter Age: 33
+(Input Prompt) Enter EmployeedID: ABC123
+(Input Prompt) Enter Years of Service: 2
+
+(Display) Record  1 Entry successful
+
+Entering Record 2
+
+(Input Prompt) Enter Name: World
+(Input Prompt) Enter Age: 990
+(Display Error) Invalid Age
+(Input Prompt) Enter Age: 39
+(Input Prompt) Enter EmployeedID: ABC124
+(Input Prompt) Enter Years of Service: 5
+
+(Display) Record  2 Entry successful
+
+
+employeedb.txt
+
+Serial Number 	Name of Employee	Age	EmployeeID	Years of Service
+--------------------------------------------------------------------------------
+1		Hello			33	ABC123		2
+2		World			39 	ABC124		5
+
+
+
+Q3. The Python String split() function works as follows (Ref. https://www.w3schools.com/python/ref_string_split.asp):
+
+L=list()
+
+testString = "welcome to the jungle"
+
+L = testString.split(" ")
+
+print(L)
+
+Output: ["welcome", "to", "the", "jungle"]
+
+How does split() work? It takes the input string "testString" and returns all sub-strings separated with the separator provided, in this case: " " (space), as a list. This list can now be processed as a regular list.
+
+Now, you are given a file data.txt that contains a sequence of records that are of the following format:
+
+Serial Number 	Name of Employee	Age	EmployeeID  Rate/Hour
+--------------------------------------------------------------------------------	
+1		Hello			33	ABC123		3.25		
+2		World			39 	ABC124		5.25	
+3		This 			33	ABC224  	9.75
+4  		What			67	ABC234		8.75
+
+(The actual records in data.txt are single space separated. Look in the uploaded data.txt file.)
+
+Open this file for reading. Create individual lists for the different fields: Name of Employee, Age, EmployeeID, Years of Service. The data should be converted to appropriate format before storing in the appropriate list. Display the individual lists to the screen.
+
+Now, calculate the average age of the number of employees in the file, the maximum rate/hour, the minimum rate/hour and the average rate/hour,  across all the employees (do  not print or display to the screen). Create a new file called datastats.txt. Write this statistical information into the file appropriately.
+
+E.g. datastats.txt (contents)
+
+Average age of employees: 43.0
+Highest pay rate of employee: 9.75
+Lowest pay rate of employee: 3.25
+Average pay rate of employee: 6.75
+
+
+
+
+
+
+
+
+
