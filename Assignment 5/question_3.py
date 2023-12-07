@@ -1,10 +1,39 @@
+import math
 
 
 
+def splitter(mainL,serial,name,age,id,rate):
+    for x in mainL:
+        count = 0
+        for y in range(len(x)):
+            if count == 0:
+                serial += [int(x[y])]
+                count += 1
+            elif count == 1:
+                name += [x[y]]
+                count += 1
+            elif count == 2:
+                age += [int(x[y])]
+                count += 1
+            elif count == 3:
+                id += [x[y]]
+                count += 1
+            else:
+                rate += [float(x[y])]
 
-def splitter(x):
-    pass
 
+
+def write_to_file(age,rate):
+    data = open('datastats.txt','w')
+
+    meanAge = sum(age)/len(age)
+    data.write("Average age of employees: " + str(meanAge) + '\n')
+    maxRate = max(rate)
+    data.write("Highest pay rate of employee: " + str(maxRate)  + '\n')
+    minRate = min(rate)
+    data.write("Lowest pay rate of employee: " + str(minRate) + '\n')
+    aveRate = sum(rate)/len(rate)
+    data.write("Average pay rate of employee: " + str(aveRate) + '\n')
 
 
 def Main():
@@ -29,30 +58,15 @@ def Main():
             mainL.append(x.split(" "))
     
     
-    for x in mainL:
-        count = 0
-        for y in range(len(x)):
-            print(x[y])
-            if count == 0:
-                serial += [int(x[y])]
-                count += 1
-            elif count == 1:
-                name += [x[y]]
-                count += 1
-            elif count == 2:
-                age += [int(x[y])]
-                count += 1
-            elif count == 3:
-                id += [x[y]]
-                count += 1
-            else:
-                rate += [float(x[y])]
+    splitter(mainL,serial,name,age,id,rate)
 
     
-    print(serial,name,age,id,rate)
+    print(name,age,id,rate)
 
 
-        
+    write_to_file(age,rate)
+    
+
 
     
 

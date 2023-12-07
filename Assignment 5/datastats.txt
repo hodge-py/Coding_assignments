@@ -1,0 +1,4 @@
+Average age of employees: 44.0625
+Highest pay rate of employee: 29.75
+Lowest pay rate of employee: 3.25
+Average pay rate of employee: 14.5
