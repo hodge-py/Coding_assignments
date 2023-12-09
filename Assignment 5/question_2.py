@@ -17,7 +17,7 @@ def ageCheck():
 def idCheck():
     id = input("Enter ID ")
     for x in id:
-        if ord(x) not in range(48,58):
+        if ord(x) not in range(48,58) and ord(x) not in range(65,123):
             return ''
     return id
 
@@ -35,6 +35,9 @@ def main():
     id = ''
     service = ''
     file = open('employeedb.txt', 'w')
+    file.write("Serial Number   Name of Employee   Age   Employee ID   Years of Service\n")
+    file.write("-----------------------------------------------------------------------\n")
+
 
     records = int(input("Number of Records to enter "))
 
@@ -53,7 +56,8 @@ def main():
 
 
         print(f"Record {x+1} Entry Successful")
-        print(name,age,id,service)
+        #print(name,age,id,service)
+        file.write(f"{x+1}               {name}                {age}      {id}              {service}\n")
 
 
 main()

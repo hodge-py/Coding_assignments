@@ -1,23 +1,23 @@
 
 def integerFind(value,integers):
     tmp = ''
-    for x in range(len(value)-1):
+    for x in range(len(value)-1): #loops through every character
         tmp += value[x]
-        if ord(value[x]) in range(48,58):
+        if ord(value[x]) in range(48,58): # if the character is in the range of 48 to 57 then it continues
             pass
         else:
             return False
 
     if tmp == '':
         pass
-    else:
+    else: # if tmp is not empty then append the full value to integers
         integers.append(tmp)
 
     return True
 
 
 
-def floatFind(value,floats):
+def floatFind(value,floats): #the other values work in a similar way just with a different ord() constraint.
     tmp = ''
     for x in range(len(value)-1):
         tmp += value[x]
@@ -31,7 +31,7 @@ def floatFind(value,floats):
 
     return True
 
-def alphabeticFind(value,alphabetic):
+def alphabeticFind(value,alphabetic): 
     tmp = ''
     for x in range(len(value)-1):
         tmp += value[x]
@@ -64,20 +64,20 @@ def alphanumFind(value,alphanum):
 def Main():
     file = open("mixeddata.txt",'r')
 
-    integers = []
+    integers = [] #empty lists to store the values into.
     alphabetic = []
     floats = []
     alphanum = []
 
     
 
-    for x in file:
+    for x in file: # loop through each line in the file
         condition = False
 
-        condition = integerFind(x,integers)
+        condition = integerFind(x,integers) # the order of functions is int,float,alpha,alphanum.
 
         if condition == False:
-            condition = floatFind(x,floats)
+            condition = floatFind(x,floats) #once a character doesnt fit the criteria the function returns false and moves onto the next
 
         if condition == False:
             condition = alphabeticFind(x,alphabetic)
@@ -87,7 +87,7 @@ def Main():
 
 
 
-    print(integers,floats,alphabetic,alphanum)
+    print(integers,floats,alphabetic,alphanum) #print the lists after looping through the file
 
 
 
