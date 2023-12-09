@@ -2,30 +2,63 @@
 def integerFind(value,integers):
     tmp = ''
     for x in range(len(value)-1):
-        print(x)
         tmp += value[x]
-        if ord(value[x]) not in range(48,58):
+        if ord(value[x]) in range(48,58):
+            pass
+        else:
             return False
-        
-    integers.append(tmp)
+
+    if tmp == '':
+        pass
+    else:
+        integers.append(tmp)
+
+    return True
+
 
 
 def floatFind(value,floats):
     tmp = ''
     for x in range(len(value)-1):
-        print(x)
         tmp += value[x]
 
-        if ord(value[x]) not in range(48,58) and ord(value[x]) != 46:
+        if ord(value[x]) in range(48,58) or ord(value[x]) == 46:
+            pass
+        else:
             return False
 
     floats.append(tmp)
 
-def alphabeticFind(value):
-    pass
+    return True
 
-def alphanumFind(value):
-    pass
+def alphabeticFind(value,alphabetic):
+    tmp = ''
+    for x in range(len(value)-1):
+        tmp += value[x]
+
+        if ord(value[x]) in range(65,123):
+            pass
+        else:
+            return False
+
+    alphabetic.append(tmp)
+
+    return True
+
+def alphanumFind(value,alphanum):
+    tmp = ''
+    for x in range(len(value)-1):
+        tmp += value[x]
+
+        if ord(value[x]) in range(65,123) or ord(value[x]) in range(48,58) or ord(value[x]) == 46:
+            pass
+        else:
+            return False
+
+    alphanum.append(tmp)
+
+    return True
+
 
 
 def Main():
@@ -36,23 +69,25 @@ def Main():
     floats = []
     alphanum = []
 
-    condition = ''
+    
 
     for x in file:
-        print(x)
+        condition = False
+
+        condition = integerFind(x,integers)
+
+        if condition == False:
+            condition = floatFind(x,floats)
+
+        if condition == False:
+            condition = alphabeticFind(x,alphabetic)
         
-        integerFind(x,integers)
-
-        #floatFind(x,floats)
-
-
-
-    print(integers,floats)
+        if condition == False:
+            condition = alphanumFind(x,alphanum)
 
 
 
-
-    
+    print(integers,floats,alphabetic,alphanum)
 
 
 
