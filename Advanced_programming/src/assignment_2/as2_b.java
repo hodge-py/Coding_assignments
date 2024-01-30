@@ -1,6 +1,6 @@
 import java.util.Scanner; //Karson Hodge, MCIS-Adv Programming Concepts, Section 34, ID: 9999-03235
 
-class as2_a {
+class as2_b {
     public static void main(String[] args) {
         Scanner myObj = new Scanner(System.in);
         System.out.println("Enter a number between 11 and 1900");
