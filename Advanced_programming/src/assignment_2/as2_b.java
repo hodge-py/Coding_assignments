@@ -1,4 +1,5 @@
-import java.util.Scanner; //Karson Hodge, MCIS-Adv Programming Concepts, Section 34, ID: 9999-03235
+import java.util.Scanner;
+//Karson Hodge, MCIS-Adv Programming Concepts, Section 34, ID: 9999-03235
 
 class as2_b {
     public static void main(String[] args) {
@@ -17,7 +18,6 @@ class as2_b {
             }
         }
 
-        //System.out.println(number);
         primeFactors(number);
 
     }
