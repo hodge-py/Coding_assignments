@@ -25,16 +25,21 @@ class as2_b {
     static void primeFactors(int num) {
         int i = 2;
         String total = "";
+        int powCount = 0;
         int tmpnum = num;
         while (i <= num){
             if(num % i == 0){
-                if (total == ""){
-                    total += String.valueOf(i);
-                    num = num / i;
-                }
-                else {
-                    total += String.valueOf("*" + i );
-                    num = num / i;
+                powCount += 1;
+                num = num / i;
+                if(num % i != 0){
+                    if(total == ""){
+                        total += "" + i + "^" + powCount;
+                        powCount = 0;
+                    }
+                    else{
+                        total += "*" + i + "^" + powCount;
+                        powCount = 0;
+                    }
                 }
             }
             else{
