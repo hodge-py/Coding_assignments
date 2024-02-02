@@ -9,7 +9,7 @@ public class Assi_3_a {
         while(range == 0){ // Creates a loop that continues until the correct input is entered
             number = myObj.nextInt();
             if(number < 0){
-                System.out.println("Out of the range, please enter a number between 11 and 1900");
+                System.out.println("Invalid Number");
             }
             else{
                 System.out.println("Valid Input");
@@ -28,10 +28,10 @@ class Main {
     int input;
 
     public Main(int input){
-        this.input = input;
+        this.input = input; // Sets the input number to the initialized variable
     }
 
-    public void convertDec(){
+    public void convertDec(){ // Converts Decimal to Octal
         String total = "";
         while(this.input > 0){
             int firstT = this.input % 8;
@@ -39,7 +39,6 @@ class Main {
             System.out.println(this.input);
             total += firstT;
         }
-        System.out.println(total);
         String finalString = "";
         for (int i = total.length()-1; -1 < i; i--) {
             finalString += total.charAt(i);
