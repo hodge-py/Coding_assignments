@@ -1,7 +1,7 @@
 import java.util.Scanner;
 // Karson Hodge, MCIS-Adv Programming Concepts, Section 34, ID: 9999-03235
 
-public class Assi_3_A {
+public class Assi_3_C {
     public static void main(String[] args) {
         Scanner myObj = new Scanner(System.in);
         int number = 0;
@@ -18,34 +18,32 @@ public class Assi_3_A {
             }
         }
 
-        Main calc = new Main(number);
-        calc.convertDec();
+        MainCount calc = new MainCount(number);
+        calc.sumValues();
 
     }
 }
 
 
-class Main {
+class MainCount {
     int input;
 
-    public Main(int input){
+    public MainCount(int input){
         this.input = input; // Sets the input number to the initialized variable
     }
 
-    public void convertDec(){ // Converts Decimal to Octal
-        String total = "";
-        while(this.input > 0){
-            int firstT = this.input % 8;
-            this.input = (this.input / 8) - ((this.input % 8) / 8);
-            total += firstT;
+    public void sumValues(){
+        int total = 11;
+        String numbers = String.valueOf(this.input);
+        while (total > 9){
+            total = 0;
+            for (int x = 0; x < numbers.length(); x++) {
+                total += numbers.charAt(x) - '0';
+            }
+            numbers = String.valueOf(total);
         }
-        String finalString = "";
-        for (int i = total.length()-1; -1 < i; i--) {
-            finalString += total.charAt(i);
+            System.out.println(total);
 
-        }
-
-        System.out.println(finalString);
     }
 
 
