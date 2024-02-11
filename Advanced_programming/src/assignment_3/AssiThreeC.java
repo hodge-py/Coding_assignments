@@ -9,7 +9,7 @@ public class AssiThreeC {
         while(range == 0){ // Creates a loop that continues until the correct input is entered
             System.out.println("Please Enter a Number");
             number = myObj.nextInt();
-            if(number < 0){
+            if(number < 0){ // Wrong number is less than 0.
                 System.out.println("Invalid Number");
             }
             else{
@@ -18,7 +18,7 @@ public class AssiThreeC {
             }
         }
 
-        MainCount calc = new MainCount(number);
+        MainCount calc = new MainCount(number); // Creates a new instance of the MainCount Class.
         calc.sumValues();
 
     }
@@ -32,17 +32,17 @@ class MainCount {
         this.input = input; // Sets the input number to the initialized variable
     }
 
-    public void sumValues(){
+    public void sumValues(){ // function to sum the values and return the single digit
         int total = 11;
-        String numbers = String.valueOf(this.input);
-        while (total > 9){
+        String numbers = String.valueOf(this.input); // convert input to string
+        while (total > 9){ // loop continues until the value is not greater than 9
             total = 0;
-            for (int x = 0; x < numbers.length(); x++) {
+            for (int x = 0; x < numbers.length(); x++) { // loop to sum up the numbers in the current string. '0' used to change char to int.
                 total += numbers.charAt(x) - '0';
             }
             numbers = String.valueOf(total);
         }
-            System.out.println(total);
+            System.out.println(total); // prints the value.
 
     }
 

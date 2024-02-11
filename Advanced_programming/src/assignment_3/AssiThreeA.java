@@ -3,13 +3,13 @@ import java.util.Scanner;
 
 public class AssiThreeA {
     public static void main(String[] args) {
-        Scanner myObj = new Scanner(System.in);
+        Scanner myObj = new Scanner(System.in); // Creates the Scanner instance.
         int number = 0;
         int range = 0;
         while(range == 0){ // Creates a loop that continues until the correct input is entered
             System.out.println("Please Enter a Number");
             number = myObj.nextInt();
-            if(number < 0){
+            if(number < 0){ // if less than zero print error
                 System.out.println("Invalid Number");
             }
             else{
@@ -18,7 +18,7 @@ public class AssiThreeA {
             }
         }
 
-        Main calc = new Main(number);
+        Main calc = new Main(number); // New instance of the class Main
         calc.convertDec();
 
     }
@@ -29,23 +29,24 @@ class Main {
     int input;
 
     public Main(int input){
+
         this.input = input; // Sets the input number to the initialized variable
     }
 
     public void convertDec(){ // Converts Decimal to Octal
         String total = "";
-        while(this.input > 0){
+        while(this.input > 0){ // loop continues until the input is still greater than zero
             int firstT = this.input % 8;
-            this.input = (this.input / 8) - ((this.input % 8) / 8);
+            this.input = (this.input / 8) - ((this.input % 8) / 8); // divides by 8 and then removes the remainder from the input e.g. 8.5 - R = 8
             total += firstT;
         }
         String finalString = "";
-        for (int i = total.length()-1; -1 < i; i--) {
+        for (int i = total.length()-1; -1 < i; i--) { // Reverses the string to get the correct value.
             finalString += total.charAt(i);
 
         }
 
-        System.out.println(finalString);
+        System.out.println(finalString); // Prints the end result
     }
 
 
