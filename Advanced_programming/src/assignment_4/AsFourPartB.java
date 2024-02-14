@@ -36,7 +36,7 @@ public class AsFourPartB {
     {
         int yy, total;
         String date = "";
-        BirthWeek weekObj = new BirthWeek();
+        AsFourPartA weekObj = new AsFourPartA();
 
         // bunch of calculations go here
 
@@ -47,6 +47,22 @@ public class AsFourPartB {
 
 
     // paste your functions from MonthName, WeekdayName, and MonthOffset here
+
+    public static String month_offset(int ){
+        String dateOffset;
+
+
+        return dateOffset;
+    }
+
+    public static String WeekdayName(int dd){
+        String weekday;
+
+
+
+
+        return weekday;
+    }
 
     public static boolean is_leap( int year )
     {
