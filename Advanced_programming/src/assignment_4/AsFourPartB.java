@@ -48,8 +48,12 @@ public class AsFourPartB {
 
     // paste your functions from MonthName, WeekdayName, and MonthOffset here
 
-    public static String month_offset(int ){
+    public static String month_offset(int yrValue){
         String dateOffset;
+        int total;
+        total = yrValue - 1900;
+        total = (yrValue / 4) - ((yrValue % 4) / 4);
+        total = total + yrValue;
 
 
         return dateOffset;
