@@ -1,9 +1,11 @@
-import java.util.Scanner;
 // Karson Hodge, MCIS-Adv Programming Concepts, Section 34, ID: 9999-03235
 
 public class AsFourPartA {
 
     /**
+     *
+     * This method returns the corresponding
+     * month as a string value from an int value
      *
      * @param month The number of the month
      * @return result string name of the month
