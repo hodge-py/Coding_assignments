@@ -1,5 +1,9 @@
 // Karson Hodge, MCIS-Adv Programming Concepts, Section 34, ID: 9999-03235
 
+/**
+ *
+ * @author Karson Hodge
+ */
 public class AsFourPartA {
 
     /**

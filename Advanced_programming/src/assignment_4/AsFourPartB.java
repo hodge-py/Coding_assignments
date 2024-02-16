@@ -1,5 +1,12 @@
 import java.util.Scanner;
 // Karson Hodge, MCIS-Adv Programming Concepts, Section 34, ID: 9999-03235
+
+/**
+ * Main classes used for execution. Initializes AsfourPartA
+ * class for use of its month_name function
+ * default constructor is used.
+ * @author Karson Hodge
+ */
 public class AsFourPartB {
 
     public static void main( String[] args )
@@ -64,6 +71,13 @@ public class AsFourPartB {
 
     // paste your functions from MonthName, WeekdayName, and MonthOffset here
 
+    /**
+     * Determines the offset needed for the total, and then gets the correct day.
+     * @param yrTotal the total at the point after the first few steps
+     * @param month The month of the birth
+     * @param yearFinal The year entered for the birthday
+     * @return dateOffset
+     */
     public static String month_offset(int yrTotal, int month, int yearFinal){
         String dateOffset;
         int totalHold = 0;
