@@ -11,8 +11,8 @@ public class AsFiveA {
     public static void main(String[] args) { // Main class that runs the guesser object
 
         Random random = new Random();
-        int randomValue = random.nextInt(10000000+1 - 20) + 20;
-        //System.out.println(randomValue);
+        int randomValue = random.nextInt(10000000+1 - 20) + 20; // Creates the 20-10000000 bound (inclusive)
+        System.out.println(randomValue);
         Guesser guessObj = new Guesser(); // New Instance of the Guesser Classs
         guessObj.guessingGame(randomValue); // Function that runs the guessing game
     }
