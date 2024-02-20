@@ -1,10 +1,10 @@
 // Karson Hodge, MCIS-Adv Programming Concepts, Section 34, ID: 9999-03235
 
 /**
- *
+ * Simple class that handles the month name conversion, int to string
  * @author Karson Hodge
  */
-public class AsFourPartA {
+public class MonthName {
 
     /**
      *
@@ -17,8 +17,8 @@ public class AsFourPartA {
     public static String month_name( int month )
     {
         String result;
-        // Your code goes in here.
-        switch (month) {
+
+        switch (month) { // Switch to determine which int aligns with what month
             case 1:
                 result = "January";
                 break;
@@ -38,7 +38,7 @@ public class AsFourPartA {
                 result = "June";
                 break;
             case 7:
-                result = "July";
+                result = "July"; // Assigns the int to a string value
                 break;
             case 8:
                 result = "August";
@@ -59,18 +59,18 @@ public class AsFourPartA {
                 result = "Error, not a valid number month";
         }
 
-        return result;
+        return result; // Returns the month string value
     }
 
 
-    public static void main( String[] args )
+    public static void main( String[] args ) // Main function that runs when calling the class
     {
         System.out.println( "Month 1: " + month_name(1) );
         System.out.println( "Month 2: " + month_name(2) );
         System.out.println( "Month 3: " + month_name(3) );
         System.out.println( "Month 4: " + month_name(4) );
         System.out.println( "Month 5: " + month_name(5) );
-        System.out.println( "Month 6: " + month_name(6) );
+        System.out.println( "Month 6: " + month_name(6) ); // Prints out the month corresponding to its int value
         System.out.println( "Month 7: " + month_name(7) );
         System.out.println( "Month 8: " + month_name(8) );
         System.out.println( "Month 9: " + month_name(9) );

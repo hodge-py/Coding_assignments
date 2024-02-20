@@ -2,16 +2,16 @@ import java.util.Scanner;
 // Karson Hodge, MCIS-Adv Programming Concepts, Section 34, ID: 9999-03235
 
 /**
- * Main classes used for execution. Initializes AsfourPartA
+ * Main classes used for execution. Initializes MonthName
  * class for use of its month_name function
  * default constructor is used.
  * @author Karson Hodge
  */
-public class AsFourPartB {
+public class WeekdayCalculator {
 
     public static void main( String[] args )
     {
-        Scanner keyboard = new Scanner(System.in);
+        Scanner keyboard = new Scanner(System.in); // Creates the input object
         String output = "";
 
         System.out.println("Welcome to MCIS5103's fantastic birth-o-meter!");
@@ -22,7 +22,7 @@ public class AsFourPartB {
         System.out.println("Some automatic tests....");
 
         System.out.println("12 10 2003 => " + weekday(12,10,2003));
-        System.out.println(" 2 13 1976 => " + weekday(2,13,1976));
+        System.out.println(" 2 13 1976 => " + weekday(2,13,1976)); // Will test a bunch of values to see if the function is workings
         System.out.println(" 2 13 1977 => " + weekday(2,13,1977));
         System.out.println(" 7  2 1974 => " + weekday(7,2,1974));
         System.out.println(" 1 15 2003 => " + weekday(1,15,2003));
@@ -31,14 +31,14 @@ public class AsFourPartB {
 
         System.out.println("Now it's your turn!  What's your birthday?");
         System.out.print("Birth date (mm dd yyyy): ");
-        int mm = keyboard.nextInt();
+        int mm = keyboard.nextInt(); // int input
         int dd = keyboard.nextInt();
         int yyyy = keyboard.nextInt();
 
         // put a function call for weekday() here
         System.out.println("You were born on ");
         output = weekday(mm,dd,yyyy);
-        System.out.println(output);
+        System.out.println(output); // Prints the weekday the user was born
     }
 
     /**
@@ -55,15 +55,15 @@ public class AsFourPartB {
         int yy, total;
         String date;
         String dateOffset;
-        AsFourPartA weekObj = new AsFourPartA();
+        MonthName weekObj = new MonthName(); // creates a new instance of the MonthName class
 
         total = yyyy - 1900;
         total = (total / 4) - ((total % 4) / 4);
-        total = total + (yyyy-1901) + dd;
+        total = total + (yyyy-1901) + dd; // Calculations need to get the correct total
 
         dateOffset = month_offset(total,mm,yyyy);
-        System.out.println(total);
-        date = dateOffset + ", " + weekObj.month_name(mm) + " " + dd + ", " + yyyy;
+
+        date = dateOffset + ", " + weekObj.month_name(mm) + " " + dd + ", " + yyyy; // The combined string for the output
 
         return date;
     }
@@ -82,7 +82,7 @@ public class AsFourPartB {
         String dateOffset;
         int totalHold = 0;
 
-        switch (month){
+        switch (month){ // Switch to determine how much to offset the total
             case 1:
                 totalHold = yrTotal + 1;
                 break;
@@ -96,7 +96,7 @@ public class AsFourPartB {
                 totalHold = yrTotal;
                 break;
             case 5:
-                totalHold = yrTotal + 2;
+                totalHold = yrTotal + 2; // in this case, if May, offset by 2
                 break;
             case 6:
                 totalHold = yrTotal + 5;
@@ -121,23 +121,27 @@ public class AsFourPartB {
                 break;
         }
 
-        if((month == 1 || month == 2) && is_leap(yearFinal)){
+        if((month == 1 || month == 2) && is_leap(yearFinal)){ // Checks if the month is a leap year
             totalHold = totalHold - 1;
-            System.out.println("leap");
         }
 
-        System.out.println(totalHold);
-        totalHold = totalHold % 7;
+        totalHold = totalHold % 7; // find the weekday number 0-6
 
         dateOffset = weekday_name(totalHold);
 
-        return dateOffset;
+        return dateOffset; // returns weekday as String
     }
 
-    public static String weekday_name(int dd){
+    /**
+     * Function determines the string of weekday from an int
+     *
+     * @param dd Remainder from total, 0-6
+     * @return weekday Returns a string with weekday value
+     */
+    public static String weekday_name(int dd){ // function to calculate the weekday from day number
         String weekday = "";
 
-        switch(dd) {
+        switch(dd) { // switch to determine which remainder from 7 corresponds to which day
             case 0:
                 weekday = "Sunday";
                 break;
@@ -148,7 +152,7 @@ public class AsFourPartB {
                 weekday = "Tuesday";
                 break;
             case 3:
-                weekday = "Wednesday";
+                weekday = "Wednesday"; // 3 = "Wednesday"
                 break;
             case 4:
                 weekday = "Thursday";
@@ -162,7 +166,7 @@ public class AsFourPartB {
         }
 
 
-        return weekday;
+        return weekday; // Returns the weekday String
     }
 
     public static boolean is_leap( int year )
