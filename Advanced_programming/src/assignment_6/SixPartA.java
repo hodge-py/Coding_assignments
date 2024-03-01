@@ -5,6 +5,7 @@ public class SixPartA {
 
     public static void main(String[] args) {
         Scanner scanObj = new Scanner(System.in);
+        System.out.println("Input a sentence");
         String tmpLatin = scanObj.nextLine();
 
         LatinString latinObj = new LatinString(tmpLatin);
