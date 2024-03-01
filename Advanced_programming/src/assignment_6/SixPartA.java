@@ -46,7 +46,15 @@ class LatinString {
     }
 
     static String englishToLatin(String convert){
+        String[] arrayS = convert.split(" ");
+        System.out.println(arrayS[0]);
 
+        for (int i = 0; i < arrayS.length; i++) {
+            for (int j = 0; j < arrayS[i].length(); j++) {
+                
+            }
+
+        }
 
 
         return "";
