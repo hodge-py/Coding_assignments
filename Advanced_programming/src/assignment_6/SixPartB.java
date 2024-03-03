@@ -19,7 +19,7 @@ public class SixPartB {
 
 
 class PascalTriangle {
-    int mainValue;
+    private int mainValue;
 
     PascalTriangle(int value){
         mainValue = value;
@@ -51,12 +51,19 @@ class PascalTriangle {
                 counter += 1;
             }
 
-            masterString += value + "\n";
+            String tmpString = "";
+            for (int j = 0; j < (numOfLines-i); j++) {
+                    tmpString += " ";
+            }
+
+            masterString += tmpString + value + "\n";
 
             lineAssign += 1;
+
         }
 
         return masterString;
+
     }
 
 
