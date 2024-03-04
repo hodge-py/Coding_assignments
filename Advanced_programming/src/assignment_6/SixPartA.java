@@ -21,7 +21,10 @@ public class SixPartA {
 
 }
 
-
+/**
+ * Handles the conversion of latin to english or english to latin.
+ * The constructor handles the original input from the user
+ */
 class LatinString {
     private String word;
     LatinString(String main) {
