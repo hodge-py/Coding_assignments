@@ -14,6 +14,6 @@ public class AsSeven {
 class RomanConversion {
 
     RomanConversion (String object){
-        
+
     }
 }

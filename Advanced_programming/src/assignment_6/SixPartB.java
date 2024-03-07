@@ -24,6 +24,11 @@ public class SixPartB {
 }
 
 
+/**
+ * Class used to assemble the pascal triangle. Includes multiple methods for that purpose
+ *
+ * @author Karson Hodge
+ */
 class PascalTriangle {
     private int mainValue; // instance variable
 

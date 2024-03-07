@@ -24,6 +24,8 @@ public class SixPartA {
 /**
  * Handles the conversion of latin to english or english to latin.
  * The constructor handles the original input from the user
+ *
+ * @author Karson Hodge
  */
 class LatinString {
     private String word; // instance variable to hold the input
