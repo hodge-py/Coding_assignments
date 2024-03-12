@@ -93,7 +93,10 @@ class RomanConversion {
         while (numCheck < romanValid.length()-1){
 
             if (romanMap.get(String.valueOf(romanValid.charAt(numCheck)) + String.valueOf(romanValid.charAt(numCheck+1))) != null){
-                    tmper += romanMap.get(String.valueOf(romanValid.charAt(numCheck)) + String.valueOf(romanValid.charAt(numCheck+1)));
+                    tmper = romanMap.get(String.valueOf(romanValid.charAt(numCheck)) + String.valueOf(romanValid.charAt(numCheck+1)));
+            }
+            else{
+                tmper = romanMap.get(String.valueOf(romanValid.charAt(numCheck)));
             }
 
         }
