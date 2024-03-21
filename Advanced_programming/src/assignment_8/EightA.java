@@ -3,6 +3,12 @@ import java.io.FileNotFoundException;  // Import this class to handle errors
 import java.util.Scanner; // Import the Scanner class to read text files
 // Karson Hodge, MCIS-Adv Programming Concepts, Section 34, ID: 9999-03235
 
+
+/**
+ *
+ *
+ * @author Karson Hodge
+ */
 public class EightA {
 
     public static void main(String[] args) throws FileNotFoundException {
@@ -28,8 +34,7 @@ class FileReader{
         int total = 0;
         String[] splitter = input.split(" ");
 
-        System.out.println(splitter[0]);
-
+        System.out.println("Reading numbers from file \"3nums.txt\"... done.");
         for (int i = 0; i < splitter.length; i++) {
             total += Integer.parseInt(splitter[i]);
             if((i+1) == splitter.length){
@@ -41,7 +46,7 @@ class FileReader{
 
         }
 
-        System.out.println(total);
+
         return output + String.valueOf(total);
     }
 
