@@ -7,7 +7,7 @@ import java.util.Scanner; // Import the Scanner class to read text files
 
 
 /**
- * The main class that runs the file.
+ * The main class that runs the file and initializes the other class.
  *
  * @author Karson Hodge
  */
@@ -56,28 +56,28 @@ class FileEncrypt {
         String name = scanObj.nextLine();
         System.out.print("Enter a filename: "); //tells user to enter a file
         String fileName = scanObj.nextLine();
-        int length = name.length();
+        int length = name.length(); // length is needed for looping through the string
         int hold;
         String valueHold = "";
-        if (password.length() > length){
+        if (password.length() > length){ // find the bigger string
             length = password.length();
         }
 
         FileWriter writeFile = new FileWriter(fileName + ".txt");
 
         int i = 0;
-        while(i < length){
+        while(i < length){ // loops through and then performs an XOR to create the encryption
             int tmp1 = i % password.length();
-            int tmp2 = i % name.length();
+            int tmp2 = i % name.length(); // modulo to prevent the string from being out of range
 
-            hold = password.charAt(tmp1) ^ name.charAt(tmp2);
+            hold = password.charAt(tmp1) ^ name.charAt(tmp2); // XOR
 
-            valueHold += hold + " ";
+            valueHold += hold + " "; // add value to empty string
 
             i += 1;
         }
 
-        writeFile.write(valueHold);
+        writeFile.write(valueHold); // write the value and the close the file
         writeFile.close();
     }
 
@@ -91,31 +91,31 @@ class FileEncrypt {
      */
     public void fileLoad(String password) throws FileNotFoundException {
         Scanner scanObj = new Scanner(System.in);
-        System.out.print("Please enter a filename: ");
+        System.out.print("Please enter a filename: "); // ask the user to enter a filename
         String filename = scanObj.nextLine();
-        filename += ".txt";
+        filename += ".txt"; // appends the extension to the end
         String[] newValue = new String[0];
         String outString = "";
 
-        File fileObj = new File(filename);
+        File fileObj = new File(filename); // creates the file reader
         Scanner myReader = new Scanner(fileObj);
-        while (myReader.hasNextLine()) {
+        while (myReader.hasNextLine()) { // while loop for reading each line of the file.
             String data = myReader.nextLine();
-            newValue = data.split(" ");
+            newValue = data.split(" "); // splits at each space
         }
 
         int i = 0;
-        while(i < newValue.length){
+        while(i < newValue.length){ // loop for decrypting the file
             int tmp1 = i % password.length();
 
-            int xOr = password.charAt(tmp1) ^ Integer.parseInt(newValue[i]);
+            int xOr = password.charAt(tmp1) ^ Integer.parseInt(newValue[i]); // XOR for finding the correct value
 
             outString += Character.toString((char) xOr);
 
-            i += 1;
+            i += 1; // next step in the loop
         }
 
-        System.out.println(outString);
+        System.out.println(outString); // prints the end value
                 
         }
 
