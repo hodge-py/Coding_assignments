@@ -35,6 +35,12 @@ public class EightA {
 class FileReader{
 
 
+    /**
+     * This class takes the line from the file and adds the sum up and returns a complete string
+     *
+     * @param input the line from the file
+     * @return
+     */
     public String addFile(String input){
         String output = ""; // string used to hold the final output
         int total = 0;
