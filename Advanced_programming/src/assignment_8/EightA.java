@@ -1,7 +1,8 @@
+// Karson Hodge, MCIS-Adv Programming Concepts, Section 34, ID: 9999-03235
 import java.io.File;  // Import the File class
 import java.io.FileNotFoundException;  // Import this class to handle errors
 import java.util.Scanner; // Import the Scanner class to read text files
-// Karson Hodge, MCIS-Adv Programming Concepts, Section 34, ID: 9999-03235
+
 
 
 /**
@@ -46,7 +47,7 @@ class FileReader{
                 output += splitter[i] + " = "; // joins the string values to make a complete form
             }
             else {
-                output += splitter[i] + " + ";
+                output += splitter[i] + " + "; // adds a plus if not the final number
             }
 
         }

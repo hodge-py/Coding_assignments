@@ -37,7 +37,6 @@ public class EightB {
 /**
  * This class performs both the encryption and decryption of the file.
  *
- *
  * @author Karson Hodge
  */
 class FileEncrypt {
