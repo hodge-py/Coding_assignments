@@ -20,7 +20,9 @@ public class NineA extends Canvas {
 class Draw extends JPanel {
 
     public void paintComponent(Graphics g) {
+        g.setColor(Color.BLUE);
         g.drawLine(100, 100, 200, 200);
+        g.draw3DRect(100,100,150,100,true);
     }
 
 
