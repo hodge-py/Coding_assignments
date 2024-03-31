@@ -13,7 +13,7 @@ public class NineA extends Canvas {
     public static void main(String[] args) {
         var panel = new Draw(); // class being used to draw
         var frame = new JFrame("Triangles"); // makes the jframe and puts a title
-        frame.setSize(680, 800); // sets the width and height of the screen
+        frame.setSize(1024, 1000); // sets the width and height of the screen
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.getContentPane().add(panel, BorderLayout.CENTER);
         frame.setVisible(true); // show the frame
@@ -23,7 +23,7 @@ public class NineA extends Canvas {
 
 
 /**
- * Handles the drawing of the 500 triangles.
+ * Handles the drawing of the 500 triangles. Inherits the JPanel class.
  *
  * @author Karson Hodge
  */
@@ -39,7 +39,7 @@ class Draw extends JPanel {
 
         Random rand = new Random(); // Creates the random object
 
-        for (int i = 0; i < 500; i++) {
+        for (int i = 0; i < 500; i++) { // loop 500 times to make triangles
 
             Color c = new Color(rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)); // randomly chooses a color
             int height1 = rand.nextInt(1000)+1;
