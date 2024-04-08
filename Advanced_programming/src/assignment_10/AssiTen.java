@@ -79,7 +79,7 @@ class TicTacToe implements ActionListener {
             panel.repaint();
         }
         else {
-            if (Objects.equals(turn, "Cpu")){
+            if (turn == "Cpu"){
                 computer();
 
                 if (xTurn) {
@@ -178,15 +178,29 @@ class TicTacToe implements ActionListener {
 
     public void computer(){
         System.out.println("ff");
+        boolean looper = true;
         Random rand = new Random();
-        int tryRand = rand.nextInt(8);
-        if (xTurn) {
-            buttons[tryRand].setText("X");
-        } else {
-            buttons[tryRand].setText("O");
+
+
+        while (looper) {
+            int tryRand = rand.nextInt(8);
+            if (buttons[tryRand].getText() == "X" || buttons[tryRand].getText() == "O") {
+
+            }
+            else {
+                if (xTurn) {
+                    buttons[tryRand].setText("X");
+                } else {
+                    buttons[tryRand].setText("O");
+                }
+                buttons[tryRand].setEnabled(false);
+                xTurn = !xTurn;
+                looper = false;
+            }
+
+
         }
-        buttons[tryRand].setEnabled(false);
-        xTurn = !xTurn;
+
 
         checkForWinner();
     }
