@@ -10,10 +10,6 @@ import java.awt.event.*;
  */
 public class AssiTen {
 
-    private JFrame frame;
-    private JPanel panel;
-    private JButton[] buttons = new JButton[11];
-    private boolean xTurn = true;
 
     public static void main(String[] args) {
         TicTacToe ticObj = new TicTacToe();
@@ -32,6 +28,7 @@ class TicTacToe implements ActionListener {
     private JButton[] buttons = new JButton[12];
     private static JLabel label;
     private boolean xTurn = true;
+    private String turn;
 
     public void runTicTac(){
         frame = new JFrame("Tic-Tac-Toe");
@@ -63,6 +60,7 @@ class TicTacToe implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         JButton button = (JButton) e.getSource();
         if (button == buttons[10]) {
+            turn = "Cpu";
             System.out.println(button.getText());
             panel.removeAll();
             ticTacSetup();
@@ -70,6 +68,7 @@ class TicTacToe implements ActionListener {
             panel.repaint();
         }
         else if (button == buttons[11]) {
+            turn = "Player";
             System.out.println(button.getText());
             panel.removeAll();
             ticTacSetup();
