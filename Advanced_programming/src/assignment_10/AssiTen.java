@@ -69,6 +69,7 @@ class TicTacToe implements ActionListener {
             panel.revalidate();
             panel.repaint();
             computer();
+            xTurn = !xTurn;
         }
         else if (button == buttons[11]) {
             turn = "Player";
@@ -193,6 +194,7 @@ class TicTacToe implements ActionListener {
                 } else {
                     buttons[tryRand].setText("O");
                 }
+
                 buttons[tryRand].setEnabled(false);
                 xTurn = !xTurn;
                 looper = false;
