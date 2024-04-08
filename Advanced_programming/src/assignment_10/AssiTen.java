@@ -2,6 +2,8 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Objects;
+import java.util.Random;
 
 /**
  * Runs the main game and also draws the gui
@@ -66,6 +68,7 @@ class TicTacToe implements ActionListener {
             ticTacSetup();
             panel.revalidate();
             panel.repaint();
+            computer();
         }
         else if (button == buttons[11]) {
             turn = "Player";
@@ -76,15 +79,33 @@ class TicTacToe implements ActionListener {
             panel.repaint();
         }
         else {
-            if (xTurn) {
-                button.setText("X");
-            } else {
-                button.setText("O");
-            }
-            button.setEnabled(false);
-            xTurn = !xTurn;
+            if (Objects.equals(turn, "Cpu")){
+                computer();
 
-            checkForWinner();
+                if (xTurn) {
+                    button.setText("X");
+                } else {
+                    button.setText("O");
+                }
+                button.setEnabled(false);
+                xTurn = !xTurn;
+
+                checkForWinner();
+            }
+            else{
+                if (xTurn) {
+                    button.setText("X");
+                } else {
+                    button.setText("O");
+                }
+                button.setEnabled(false);
+                xTurn = !xTurn;
+
+                computer();
+
+                checkForWinner();
+            }
+
         }
     }
 
@@ -153,6 +174,21 @@ class TicTacToe implements ActionListener {
         panel.add(buttons[11]);
         buttons[10].addActionListener(this);
         buttons[11].addActionListener(this);
+    }
+
+    public void computer(){
+        System.out.println("ff");
+        Random rand = new Random();
+        int tryRand = rand.nextInt(8);
+        if (xTurn) {
+            buttons[tryRand].setText("X");
+        } else {
+            buttons[tryRand].setText("O");
+        }
+        buttons[tryRand].setEnabled(false);
+        xTurn = !xTurn;
+
+        checkForWinner();
     }
 
 
