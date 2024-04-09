@@ -61,6 +61,7 @@ class TicTacToe implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         JButton button = (JButton) e.getSource();
+        Timer timer = new Timer(10000, null);
         if (button == buttons[10]) {
             turn = "Cpu";
             System.out.println(button.getText());
@@ -69,6 +70,7 @@ class TicTacToe implements ActionListener {
             panel.revalidate();
             panel.repaint();
             computer();
+
             xTurn = !xTurn;
         }
         else if (button == buttons[11]) {
@@ -81,7 +83,7 @@ class TicTacToe implements ActionListener {
         }
         else {
             if (turn == "Cpu"){
-                computer();
+
 
                 if (xTurn) {
                     button.setText("X");
@@ -90,6 +92,8 @@ class TicTacToe implements ActionListener {
                 }
                 button.setEnabled(false);
                 xTurn = !xTurn;
+
+                computer();
 
                 checkForWinner();
             }
@@ -101,6 +105,8 @@ class TicTacToe implements ActionListener {
                 }
                 button.setEnabled(false);
                 xTurn = !xTurn;
+
+                checkForWinner();
 
                 computer();
 
@@ -177,14 +183,15 @@ class TicTacToe implements ActionListener {
         buttons[11].addActionListener(this);
     }
 
-    public void computer(){
+    public void computer() {
         System.out.println("ff");
         boolean looper = true;
         Random rand = new Random();
 
 
         while (looper) {
-            int tryRand = rand.nextInt(8);
+            int tryRand = rand.nextInt(9);
+            System.out.println(tryRand);
             if (buttons[tryRand].getText() == "X" || buttons[tryRand].getText() == "O") {
 
             }
@@ -205,6 +212,8 @@ class TicTacToe implements ActionListener {
 
 
         checkForWinner();
+
+
     }
 
 
