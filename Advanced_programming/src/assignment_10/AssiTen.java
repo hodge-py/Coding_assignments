@@ -27,7 +27,7 @@ class TicTacToe implements ActionListener {
 
     private JFrame frame;
     private JPanel panel;
-    private JButton[] buttons = new JButton[12];
+    private JButton[] buttons = new JButton[13];
     private static JLabel label;
     private boolean xTurn = true;
     private String turn;
@@ -61,7 +61,6 @@ class TicTacToe implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         JButton button = (JButton) e.getSource();
-        Timer timer = new Timer(10000, null);
         if (button == buttons[10]) {
             turn = "Cpu";
             System.out.println(button.getText());
@@ -71,7 +70,6 @@ class TicTacToe implements ActionListener {
             panel.repaint();
             computer();
 
-            xTurn = !xTurn;
         }
         else if (button == buttons[11]) {
             turn = "Player";
@@ -81,9 +79,11 @@ class TicTacToe implements ActionListener {
             panel.revalidate();
             panel.repaint();
         }
+        else if (button == buttons[12]) {
+            JOptionPane.showMessageDialog(frame, "Karson Hodge. \nTic-Tac-Toe, win by getting the X's or O's in a row of three. Either in a row, column or diagonal \nApril 9th, 2024.");
+        }
         else {
             if (turn == "Cpu"){
-
 
                 if (xTurn) {
                     button.setText("X");
@@ -169,18 +169,25 @@ class TicTacToe implements ActionListener {
         }
         xTurn = true;
         panel.removeAll();
+        panel.revalidate();
+        panel.repaint();
         starter();
     }
 
     public void starter(){
+        panel.setLayout(new GridLayout(4, 1));
         buttons[10] = new JButton("CPU");
         buttons[11] = new JButton("Player");
+        buttons[12] = new JButton("Help");
         label = new JLabel("Who Goes First?");
         panel.add(label);
         panel.add(buttons[10]);
         panel.add(buttons[11]);
+        panel.add((buttons[12]));
         buttons[10].addActionListener(this);
         buttons[11].addActionListener(this);
+        buttons[12].addActionListener(this);
+
     }
 
     public void computer() {
