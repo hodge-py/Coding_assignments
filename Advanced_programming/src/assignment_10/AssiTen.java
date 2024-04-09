@@ -6,7 +6,7 @@ import java.util.Objects;
 import java.util.Random;
 
 /**
- * Runs the main game and also draws the gui
+ * Runs the TicTacToe class which draws the gui and runs the game
  *
  * @author Karson Hodge
  */
@@ -23,6 +23,11 @@ public class AssiTen {
 }
 
 
+/**
+ * Main class that builds the GUI and then also runs the tic-tac-toe game
+ *
+ * @author Karson Hodge
+ */
 class TicTacToe implements ActionListener {
 
     private JFrame frame;
@@ -46,6 +51,10 @@ class TicTacToe implements ActionListener {
     }
 
 
+    /**
+     * Setup the tictactoe game to be played
+     *
+     */
     public void ticTacSetup(){
         panel.setLayout(new GridLayout(3, 3));
         panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -59,6 +68,11 @@ class TicTacToe implements ActionListener {
         System.out.println("ggegegege");
     }
 
+    /**
+     * Listener that waits for a button press
+     *
+     * @param e the event to be processed
+     */
     public void actionPerformed(ActionEvent e) {
         JButton button = (JButton) e.getSource();
         if (button == buttons[10]) {
@@ -73,6 +87,7 @@ class TicTacToe implements ActionListener {
         }
         else if (button == buttons[11]) {
             turn = "Player";
+            xTurn = true;
             System.out.println(button.getText());
             panel.removeAll();
             ticTacSetup();
@@ -116,6 +131,11 @@ class TicTacToe implements ActionListener {
         }
     }
 
+
+    /**
+     * This function checks for the winner, row column or diagonal.
+     *
+     */
     public void checkForWinner() {
         // Check rows
         for (int i = 0; i < 9; i += 3) {
@@ -161,7 +181,10 @@ class TicTacToe implements ActionListener {
         }
     }
 
-
+    /**
+     * Resets the game and sends the user back to the main menu
+     *
+     */
     public void resetGame() {
         for (int i = 0; i < 9; i++) {
             buttons[i].setText("");
@@ -174,6 +197,10 @@ class TicTacToe implements ActionListener {
         starter();
     }
 
+    /**
+     * Main menu for the user, pick who goes first or open the help button.
+     *
+     */
     public void starter(){
         panel.setLayout(new GridLayout(4, 1));
         buttons[10] = new JButton("CPU");
@@ -190,6 +217,10 @@ class TicTacToe implements ActionListener {
 
     }
 
+    /**
+     * controls the actions of the computer and makes a selection.
+     *
+     */
     public void computer() {
         System.out.println("ff");
         boolean looper = true;
