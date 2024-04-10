@@ -146,7 +146,7 @@ class TicTacToe implements ActionListener {
         // Check rows
         for (int i = 0; i < 9; i += 3) {
             if (buttons[i].getText().equals(buttons[i+1].getText()) && buttons[i].getText().equals(buttons[i+2].getText()) && !buttons[i].isEnabled()) {
-                JOptionPane.showMessageDialog(frame, buttons[i].getText() + " wins!");
+                JOptionPane.showMessageDialog(frame, buttons[i].getText() + " wins!"); // displays the character that won
                 resetGame();
                 return;
             }
@@ -156,7 +156,7 @@ class TicTacToe implements ActionListener {
         for (int i = 0; i < 3; i++) {
             if (buttons[i].getText().equals(buttons[i+3].getText()) && buttons[i].getText().equals(buttons[i+6].getText()) && !buttons[i].isEnabled()) {
                 JOptionPane.showMessageDialog(frame, buttons[i].getText() + " wins!");
-                resetGame();
+                resetGame(); // resets the game
                 return;
             }
         }
@@ -164,24 +164,24 @@ class TicTacToe implements ActionListener {
         // Check diagonals
         if (buttons[0].getText().equals(buttons[4].getText()) && buttons[0].getText().equals(buttons[8].getText()) && !buttons[0].isEnabled()) {
             JOptionPane.showMessageDialog(frame, buttons[0].getText() + " wins!");
-            resetGame();
+            resetGame(); // resets the game
             return;
         }
         if (buttons[2].getText().equals(buttons[4].getText()) && buttons[2].getText().equals(buttons[6].getText()) && !buttons[2].isEnabled()) {
             JOptionPane.showMessageDialog(frame, buttons[2].getText() + " wins!");
-            resetGame();
+            resetGame(); //resets the game
             return;
         }
 
         // Check for tie
         boolean tie = true;
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < 9; i++) { // loops through all the buttons checking if any are enabled
             if (buttons[i].isEnabled()) {
                 tie = false;
                 break;
             }
         }
-        if (tie) {
+        if (tie) { // show tie message
             JOptionPane.showMessageDialog(frame, "Tie game!");
             resetGame();
         }
@@ -190,35 +190,37 @@ class TicTacToe implements ActionListener {
     /**
      * Resets the game and sends the user back to the main menu
      *
+     * @author Karson Hodge
      */
     public void resetGame() {
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < 9; i++) { // resets all the buttons
             buttons[i].setText("");
             buttons[i].setEnabled(true);
         }
         xTurn = true;
-        panel.removeAll();
+        panel.removeAll(); // remove the current graphics
         panel.revalidate();
         panel.repaint();
-        starter();
+        starter(); // run the main menu
     }
 
     /**
      * Main menu for the user, pick who goes first or open the help button.
      *
+     * @author Karson Hodge
      */
     public void starter(){
-        panel.setLayout(new GridLayout(4, 1));
+        panel.setLayout(new GridLayout(4, 1)); //grid layout for the panel
         buttons[10] = new JButton("CPU");
         buttons[11] = new JButton("Player");
-        buttons[12] = new JButton("Help");
+        buttons[12] = new JButton("Help"); // help button with text
         label = new JLabel("Who Goes First?");
-        panel.add(label);
+        panel.add(label); // adds the label to the panel
         panel.add(buttons[10]);
         panel.add(buttons[11]);
-        panel.add((buttons[12]));
+        panel.add((buttons[12])); // adds the button to the panel
         buttons[10].addActionListener(this);
-        buttons[11].addActionListener(this);
+        buttons[11].addActionListener(this); // adds a listener to the button
         buttons[12].addActionListener(this);
 
     }
@@ -226,77 +228,75 @@ class TicTacToe implements ActionListener {
     /**
      * controls the actions of the computer and makes a selection.
      *
+     * @author Karson Hodge
      */
     public void computer() {
-        System.out.println("ff");
         boolean looper = true;
-        Random rand = new Random();
-        System.out.println(buttons[4].getText());
-        if(buttons[4].getText() == ""){
+        Random rand = new Random(); // create a new instance of Random
+        if(buttons[4].getText() == ""){ // center is empty pick it
             if (xTurn) {
-                buttons[4].setText("X");
+                buttons[4].setText("X"); // set the character
             } else {
                 buttons[4].setText("O");
             }
 
-            buttons[4].setEnabled(false);
+            buttons[4].setEnabled(false); // disable the button
             xTurn = !xTurn;
             looper = false;
         }
-        else if(buttons[0].getText() == ""){
+        else if(buttons[0].getText() == ""){  // all the ELSE IF statements including this one picks a corner
             if (xTurn) {
-                buttons[0].setText("X");
+                buttons[0].setText("X"); // set character
             } else {
                 buttons[0].setText("O");
             }
 
-            buttons[0].setEnabled(false);
+            buttons[0].setEnabled(false); // disable button
             xTurn = !xTurn;
             looper = false;
         }
         else if(buttons[2].getText() == ""){
             if (xTurn) {
-                buttons[2].setText("X");
+                buttons[2].setText("X"); // set character
             } else {
                 buttons[2].setText("O");
             }
 
-            buttons[2].setEnabled(false);
+            buttons[2].setEnabled(false);// disable button
             xTurn = !xTurn;
             looper = false;
         }
         else if(buttons[6].getText() == ""){
             if (xTurn) {
-                buttons[6].setText("X");
+                buttons[6].setText("X");// set character
             } else {
                 buttons[6].setText("O");
             }
 
-            buttons[6].setEnabled(false);
+            buttons[6].setEnabled(false);// disable button
             xTurn = !xTurn;
             looper = false;
         }
         else{
-        while (looper) {
-                int tryRand = rand.nextInt(9);
-                System.out.println(tryRand);
-                if (buttons[tryRand].getText() == "X" || buttons[tryRand].getText() == "O") {
+        while (looper) { // loop until an open spot is found
+                int tryRand = rand.nextInt(9); // picks a random number 0-8
+                if (buttons[tryRand].getText() == "X" || buttons[tryRand].getText() == "O") { // if already played do nothing
 
                 } else {
                     if (xTurn) {
-                        buttons[tryRand].setText("X");
+                        buttons[tryRand].setText("X"); // set the character
                     } else {
                         buttons[tryRand].setText("O");
                     }
 
-                    buttons[tryRand].setEnabled(false);
-                    xTurn = !xTurn;
-                    looper = false;
+                    buttons[tryRand].setEnabled(false); // disable the button
+                    xTurn = !xTurn; // switch turn
+                    looper = false; // end loop
                 }
             }
         }
 
-        checkForWinner();
+        checkForWinner(); // check if computer won.
 
 
     }
