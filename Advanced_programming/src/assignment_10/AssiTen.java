@@ -233,7 +233,7 @@ class TicTacToe implements ActionListener {
     public void computer() {
         boolean looper = true;
         Random rand = new Random(); // create a new instance of Random
-        if(buttons[4].getText() == ""){ // center is empty pick it
+        if(buttons[4].getText() == ""){ // center is empty, pick it
             if (xTurn) {
                 buttons[4].setText("X"); // set the character
             } else {
