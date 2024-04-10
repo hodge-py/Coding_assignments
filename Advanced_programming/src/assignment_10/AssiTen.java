@@ -14,9 +14,9 @@ public class AssiTen {
 
 
     public static void main(String[] args) {
-        TicTacToe ticObj = new TicTacToe();
+        TicTacToe ticObj = new TicTacToe(); // creates the TicTacToe instance
 
-        ticObj.runTicTac();
+        ticObj.runTicTac(); // runs the game loop
 
 
     }
@@ -30,23 +30,28 @@ public class AssiTen {
  */
 class TicTacToe implements ActionListener {
 
-    private JFrame frame;
+    private JFrame frame; //established the main window
     private JPanel panel;
-    private JButton[] buttons = new JButton[13];
+    private JButton[] buttons = new JButton[13]; // thirteen buttons will be used
     private static JLabel label;
-    private boolean xTurn = true;
-    private String turn;
+    private boolean xTurn = true; // keep track of who's turn
+    private String turn; // for tracking what stage
 
+    /**
+     * Runs the whole game
+     *
+     * @author Karson Hodge
+     */
     public void runTicTac(){
         frame = new JFrame("Tic-Tac-Toe");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // close the jframe when exit is clicked
 
-        panel = new JPanel();
+        panel = new JPanel(); // adds a panel which objects will be placed on
 
-        starter();
+        starter(); // builds the main menu
 
         frame.add(panel, BorderLayout.CENTER);
-        frame.setSize(400, 400);
+        frame.setSize(400, 400); // sets the size for the window
         frame.setVisible(true);
     }
 
@@ -54,18 +59,19 @@ class TicTacToe implements ActionListener {
     /**
      * Setup the tictactoe game to be played
      *
+     * @author Karson Hodge
      */
     public void ticTacSetup(){
-        panel.setLayout(new GridLayout(3, 3));
+        panel.setLayout(new GridLayout(3, 3)); // grid layout for tictactoe
         panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < 9; i++) { // loop through and assign each button
             buttons[i] = new JButton();
             buttons[i].setFont(new Font("Arial", Font.PLAIN, 40));
-            buttons[i].addActionListener(this);
+            buttons[i].addActionListener(this); // adds a listener for when the button is clicked
             panel.add(buttons[i]);
         }
-        System.out.println("ggegegege");
+
     }
 
     /**
@@ -75,57 +81,56 @@ class TicTacToe implements ActionListener {
      */
     public void actionPerformed(ActionEvent e) {
         JButton button = (JButton) e.getSource();
-        if (button == buttons[10]) {
-            turn = "Cpu";
-            System.out.println(button.getText());
+        if (button == buttons[10]) { // if cpu is clicked this will fire
+            turn = "Cpu"; // set it to cpu turn
             panel.removeAll();
-            ticTacSetup();
+            ticTacSetup(); // builds the game
             panel.revalidate();
-            panel.repaint();
+            panel.repaint(); // need to reset the panels graphics
             computer();
 
         }
-        else if (button == buttons[11]) {
+        else if (button == buttons[11]) { // if player is chosen in the menu
             turn = "Player";
-            xTurn = true;
-            System.out.println(button.getText());
+            xTurn = true; // set player turn tru
             panel.removeAll();
-            ticTacSetup();
+            ticTacSetup(); // setup the game for the user
             panel.revalidate();
-            panel.repaint();
+            panel.repaint(); // used to paint the graphics
         }
-        else if (button == buttons[12]) {
-            JOptionPane.showMessageDialog(frame, "Karson Hodge. \nTic-Tac-Toe, win by getting the X's or O's in a row of three. Either in a row, column or diagonal \nApril 9th, 2024.");
+        else if (button == buttons[12]) { // help button
+            JOptionPane.showMessageDialog(frame, "Karson Hodge. \nTic-Tac-Toe, win by getting the X's or O's in a row of three. Either in a row, column or diagonal \nApril 10th, 2024.");
         }
         else {
-            if (turn == "Cpu"){
+            if (turn == "Cpu"){ // if cpu was clicked, this is the game loop
 
                 if (xTurn) {
-                    button.setText("X");
+                    button.setText("X"); // set to x if cpu's turn
                 } else {
                     button.setText("O");
                 }
-                button.setEnabled(false);
+                button.setEnabled(false); // disable the button from being clicked
                 xTurn = !xTurn;
 
-                computer();
+                computer(); // computers turn now
 
                 checkForWinner();
+
             }
             else{
-                if (xTurn) {
+                if (xTurn) { // user goes first
                     button.setText("X");
                 } else {
                     button.setText("O");
-                }
+                } // set the letter clicked
                 button.setEnabled(false);
-                xTurn = !xTurn;
+                xTurn = !xTurn; // switch turns
 
-                checkForWinner();
+                checkForWinner(); // check if user has won
 
                 computer();
 
-                checkForWinner();
+                checkForWinner(); //check if computer has won
             }
 
         }
@@ -135,6 +140,7 @@ class TicTacToe implements ActionListener {
     /**
      * This function checks for the winner, row column or diagonal.
      *
+     * @author Karson Hodge
      */
     public void checkForWinner() {
         // Check rows
@@ -225,29 +231,70 @@ class TicTacToe implements ActionListener {
         System.out.println("ff");
         boolean looper = true;
         Random rand = new Random();
-
-
-        while (looper) {
-            int tryRand = rand.nextInt(9);
-            System.out.println(tryRand);
-            if (buttons[tryRand].getText() == "X" || buttons[tryRand].getText() == "O") {
-
-            }
-            else {
-                if (xTurn) {
-                    buttons[tryRand].setText("X");
-                } else {
-                    buttons[tryRand].setText("O");
-                }
-
-                buttons[tryRand].setEnabled(false);
-                xTurn = !xTurn;
-                looper = false;
+        System.out.println(buttons[4].getText());
+        if(buttons[4].getText() == ""){
+            if (xTurn) {
+                buttons[4].setText("X");
+            } else {
+                buttons[4].setText("O");
             }
 
-
+            buttons[4].setEnabled(false);
+            xTurn = !xTurn;
+            looper = false;
         }
+        else if(buttons[0].getText() == ""){
+            if (xTurn) {
+                buttons[0].setText("X");
+            } else {
+                buttons[0].setText("O");
+            }
 
+            buttons[0].setEnabled(false);
+            xTurn = !xTurn;
+            looper = false;
+        }
+        else if(buttons[2].getText() == ""){
+            if (xTurn) {
+                buttons[2].setText("X");
+            } else {
+                buttons[2].setText("O");
+            }
+
+            buttons[2].setEnabled(false);
+            xTurn = !xTurn;
+            looper = false;
+        }
+        else if(buttons[6].getText() == ""){
+            if (xTurn) {
+                buttons[6].setText("X");
+            } else {
+                buttons[6].setText("O");
+            }
+
+            buttons[6].setEnabled(false);
+            xTurn = !xTurn;
+            looper = false;
+        }
+        else{
+        while (looper) {
+                int tryRand = rand.nextInt(9);
+                System.out.println(tryRand);
+                if (buttons[tryRand].getText() == "X" || buttons[tryRand].getText() == "O") {
+
+                } else {
+                    if (xTurn) {
+                        buttons[tryRand].setText("X");
+                    } else {
+                        buttons[tryRand].setText("O");
+                    }
+
+                    buttons[tryRand].setEnabled(false);
+                    xTurn = !xTurn;
+                    looper = false;
+                }
+            }
+        }
 
         checkForWinner();
 
