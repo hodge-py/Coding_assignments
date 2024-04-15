@@ -3,9 +3,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Objects;
-import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.awt.event.MouseAdapter;
 
 
 public class MineSweep {
@@ -29,6 +29,9 @@ class MineSetup implements ActionListener  {
     private String turn; // for tracking what stage
     Timer timer = new Timer();
     int timeHold = 0;
+    boolean leftRight = false;
+    boolean colorFlag = true;
+
 
     public void setup(){
 
@@ -41,11 +44,18 @@ class MineSetup implements ActionListener  {
             frame.add(panel, BorderLayout.CENTER);
             frame.setSize(600, 600); // sets the size for the window
             frame.setVisible(true);
+            mouseAdd();
             mainMenu();
-            /*
 
 
-             */
+    }
+
+    public void mouseAdd() {
+            frame.addMouseListener(new MouseAdapter() {
+                public void mousePressed(MouseEvent me) {
+                    System.out.println(me.getButton());
+                }
+            });
 
     }
 
@@ -60,6 +70,25 @@ class MineSetup implements ActionListener  {
             buttons[i] = new JButton();
             buttons[i].setFont(new Font("Arial", Font.PLAIN, 40));
             buttons[i].addActionListener(this);
+            int finalI = i;
+            buttons[i].addMouseListener(new MouseAdapter() {
+                public void mousePressed(MouseEvent me) {
+                    if(me.getButton() == MouseEvent.BUTTON1){
+                        System.out.println("left click");
+                        leftRight = true;
+                    }
+                    else{
+
+                        Color colorButton = new Color(238,238,238);
+                        if(Objects.equals(buttons[finalI].getBackground(), colorButton)){
+                            buttons[finalI].setBackground(Color.RED);
+                        }
+                        else {
+                            buttons[finalI].setBackground(null);
+                        }
+                    }
+                }
+            });
             panel.add(buttons[i]);
         }
     }
@@ -74,6 +103,16 @@ class MineSetup implements ActionListener  {
             buttons[i] = new JButton();
             buttons[i].setFont(new Font("Arial", Font.PLAIN, 40));
             buttons[i].addActionListener(this);
+            buttons[i].addMouseListener(new MouseAdapter() {
+                public void mousePressed(MouseEvent me) {
+                    if(me.getButton() == MouseEvent.BUTTON1){
+                        System.out.println("left click");
+                    }
+                    else{
+                        System.out.println("right click");
+                    }
+                }
+            });
             panel.add(buttons[i]);
         }
     }
@@ -89,6 +128,18 @@ class MineSetup implements ActionListener  {
             buttons[i] = new JButton();
             buttons[i].setFont(new Font("Arial", Font.PLAIN, 40));
             buttons[i].addActionListener(this);
+            int finalI = i;
+            buttons[i].addMouseListener(new MouseAdapter() {
+                public void mousePressed(MouseEvent me) {
+                    if(me.getButton() == MouseEvent.BUTTON1){
+                        System.out.println("left click");
+                    }
+                    else{
+                        System.out.println("right click");
+                        System.out.println(buttons[finalI]);
+                    }
+                }
+            });
             panel.add(buttons[i]);
         }
     }
@@ -111,6 +162,7 @@ class MineSetup implements ActionListener  {
                     JOptionPane.showMessageDialog(frame, "Game Over");
                     frame.remove(label[1]);
                     this.cancel();
+                    leftRight = false;
                     mainMenu();
                     }
                 }
@@ -132,6 +184,7 @@ class MineSetup implements ActionListener  {
                         JOptionPane.showMessageDialog(frame, "Game Over");
                         frame.remove(label[1]);
                         this.cancel();
+                        leftRight = false;
                         mainMenu();
                     }
                 }
@@ -153,11 +206,19 @@ class MineSetup implements ActionListener  {
                         JOptionPane.showMessageDialog(frame, "Game Over");
                         frame.remove(label[1]);
                         this.cancel();
+                        leftRight = false;
                         mainMenu();
                     }
                 }
             }, 1000, 1000);
 
+        }
+
+
+        if (leftRight){
+            button.setText("0");
+            button.setEnabled(false);
+            System.out.println("test");
         }
 
     }
@@ -179,5 +240,7 @@ class MineSetup implements ActionListener  {
         panel.revalidate();
         panel.repaint();
     }
+
+
 
 }
