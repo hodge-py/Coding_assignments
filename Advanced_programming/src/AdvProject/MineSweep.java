@@ -2,10 +2,10 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.Objects;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 import java.awt.event.MouseAdapter;
+import java.util.Timer;
+import java.util.concurrent.ThreadLocalRandom;
 
 
 public class MineSweep {
@@ -30,7 +30,10 @@ class MineSetup implements ActionListener  {
     Timer timer = new Timer();
     int timeHold = 0;
     boolean leftRight = false;
-    boolean colorFlag = true;
+    ArrayList<Integer> mineLoc;
+    TimerTask task1;
+    TimerTask task2;
+    TimerTask task3;
 
 
     public void setup(){
@@ -70,6 +73,7 @@ class MineSetup implements ActionListener  {
             buttons[i] = new JButton();
             buttons[i].setFont(new Font("Arial", Font.PLAIN, 40));
             buttons[i].addActionListener(this);
+            buttons[i].setActionCommand(String.valueOf(i));
             int finalI = i;
             buttons[i].addMouseListener(new MouseAdapter() {
                 public void mousePressed(MouseEvent me) {
@@ -103,6 +107,7 @@ class MineSetup implements ActionListener  {
             buttons[i] = new JButton();
             buttons[i].setFont(new Font("Arial", Font.PLAIN, 40));
             buttons[i].addActionListener(this);
+            buttons[i].setActionCommand(String.valueOf(i));
             buttons[i].addMouseListener(new MouseAdapter() {
                 public void mousePressed(MouseEvent me) {
                     if(me.getButton() == MouseEvent.BUTTON1){
@@ -153,20 +158,8 @@ class MineSetup implements ActionListener  {
             easyMode();
             panel.revalidate();
             panel.repaint();
-            timer.scheduleAtFixedRate(new TimerTask() {
-                @Override
-                public void run() {
-                    timeHold += 1;
-                    label[1].setText(String.valueOf(timeHold));
-                    if (timeHold == 60) {
-                    JOptionPane.showMessageDialog(frame, "Game Over");
-                    frame.remove(label[1]);
-                    this.cancel();
-                    leftRight = false;
-                    mainMenu();
-                    }
-                }
-            }, 1000, 1000);
+            mineLoc = minePlacement("easy");
+            timer.scheduleAtFixedRate(task1, 1000, 1000);
 
         }
         else if (button == buttons[1]) {
@@ -214,11 +207,20 @@ class MineSetup implements ActionListener  {
 
         }
 
-
         if (leftRight){
-            button.setText("0");
-            button.setEnabled(false);
-            System.out.println("test");
+            if (mineLoc.contains(Integer.parseInt(button.getActionCommand()))){
+                button.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("explosion-boom.gif"))));
+                task1.cancel();
+                JOptionPane.showMessageDialog(frame, "Game Over");
+                frame.remove(label[1]);
+                leftRight = false;
+                mainMenu();
+            }
+            else{
+                button.setText("0");
+                button.setEnabled(false);
+            }
+
         }
 
     }
@@ -239,6 +241,68 @@ class MineSetup implements ActionListener  {
         buttons[2].addActionListener(this);
         panel.revalidate();
         panel.repaint();
+
+        task1 = new TimerTask() {
+            @Override
+            public void run() {
+                timeHold += 1;
+                label[1].setText(String.valueOf(timeHold));
+                if (timeHold == 60) {
+                    JOptionPane.showMessageDialog(frame, "Game Over");
+                    frame.remove(label[1]);
+                    this.cancel();
+                    leftRight = false;
+                    mainMenu();
+                }
+            }
+        };
+
+
+    }
+
+    public ArrayList<Integer> minePlacement(String diff){
+        ArrayList<Integer> arr = new ArrayList<Integer>();
+        Random rand = new Random();
+        int randHold;
+        int count = 0;
+        if(diff == "easy"){
+            while(count < 11) {
+                randHold = ThreadLocalRandom.current().nextInt(3, 56 + 1);
+                if (arr.contains(randHold)) {
+
+                }
+                else{
+                    arr.add(randHold);
+                    count += 1;
+                }
+            }
+        }
+        else if(diff == "medium"){
+                while(count < 36) {
+                    randHold = ThreadLocalRandom.current().nextInt(57, 272 + 1);
+                    if (arr.contains(randHold)) {
+
+                    }
+                    else{
+                        arr.add(randHold);
+                        count += 1;
+                    }
+                }
+        }
+        else if(diff == "hard"){
+                while(count < 92) {
+                    randHold = ThreadLocalRandom.current().nextInt(273, 818 + 1);
+                    if (arr.contains(randHold)) {
+
+                    }
+                    else{
+                        arr.add(randHold);
+                        count += 1;
+                    }
+                }
+        }
+
+        return arr;
     }
 
 
