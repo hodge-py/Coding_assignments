@@ -243,7 +243,8 @@ class MineSetup implements ActionListener  {
                 mainMenu();
             }
             else{
-                button.setText("0");
+                int value = mineCounter(button.getActionCommand());
+                button.setText(String.valueOf(value));
                 button.setEnabled(false);
             }
 
@@ -332,5 +333,34 @@ class MineSetup implements ActionListener  {
     }
 
 
+    public int mineCounter(String mineCount){
+        int counter = 0;
+        if(mineLoc.contains(Integer.parseInt(mineCount)-7)){
+            counter += 1;
+        }
+        if(mineLoc.contains(Integer.parseInt(mineCount)-6)){
+            counter += 1;
+        }
+        if(mineLoc.contains(Integer.parseInt(mineCount)-5)){
+            counter += 1;
+        }
+        if(mineLoc.contains(Integer.parseInt(mineCount)-1)){
+            counter += 1;
+        }
+        if(mineLoc.contains(Integer.parseInt(mineCount)+1)){
+            counter += 1;
+        }
+        if(mineLoc.contains(Integer.parseInt(mineCount)+5)){
+            counter += 1;
+        }
+        if(mineLoc.contains(Integer.parseInt(mineCount)+6)){
+            counter += 1;
+        }
+        if(mineLoc.contains(Integer.parseInt(mineCount)+7)){
+            counter += 1;
+        }
+
+        return counter;
+    }
 
 }
