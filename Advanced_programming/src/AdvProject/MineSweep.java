@@ -279,6 +279,7 @@ class MineSetup implements ActionListener  {
                 timeHold += 1;
                 label[1].setText(String.valueOf(timeHold));
                 if (timeHold == 60) {
+                    explosionMine();
                     JOptionPane.showMessageDialog(frame, "Game Over");
                     frame.remove(label[1]);
                     this.cancel();
@@ -397,6 +398,10 @@ class MineSetup implements ActionListener  {
             }
             if(countButton == 11){
                 JOptionPane.showMessageDialog(frame, "You Win");
+                task1.cancel();
+                frame.remove(label[1]);
+                leftRight = false;
+                mainMenu();
             }
         }
     }
