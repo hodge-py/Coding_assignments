@@ -1,7 +1,10 @@
 // Karson Hodge, MCIS-Adv Programming Concepts, Section 34, ID: 9999-03235
+import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
 import java.awt.event.MouseAdapter;
 import java.util.Timer;
@@ -210,6 +213,29 @@ class MineSetup implements ActionListener  {
         if (leftRight){
             if (mineLoc.contains(Integer.parseInt(button.getActionCommand()))){
                 button.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("explosion-boom.gif"))));
+                String soundName = "explosion.wav";
+                AudioInputStream audioInputStream = null;
+                try {
+                    audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());
+                } catch (UnsupportedAudioFileException ex) {
+                    throw new RuntimeException(ex);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+                Clip clip = null;
+                try {
+                    clip = AudioSystem.getClip();
+                } catch (LineUnavailableException ex) {
+                    throw new RuntimeException(ex);
+                }
+                try {
+                    clip.open(audioInputStream);
+                } catch (LineUnavailableException ex) {
+                    throw new RuntimeException(ex);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+                clip.start();
                 task1.cancel();
                 JOptionPane.showMessageDialog(frame, "Game Over");
                 frame.remove(label[1]);
