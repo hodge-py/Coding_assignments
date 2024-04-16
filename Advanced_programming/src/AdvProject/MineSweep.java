@@ -37,6 +37,7 @@ class MineSetup implements ActionListener  {
     TimerTask task1;
     TimerTask task2;
     TimerTask task3;
+    String difficulty;
 
 
     public void setup(){
@@ -66,7 +67,7 @@ class MineSetup implements ActionListener  {
     }
 
     public void easyMode(){
-
+        difficulty = "easy";
         label[1] = new JLabel("0", JLabel.CENTER);
         label[1].setHorizontalTextPosition(JLabel.CENTER);
         frame.add(label[1],BorderLayout.NORTH);
@@ -100,7 +101,7 @@ class MineSetup implements ActionListener  {
         }
     }
     public void middleMode(){
-
+        difficulty = "medium";
         label[1] = new JLabel("0", JLabel.CENTER);
         label[1].setHorizontalTextPosition(JLabel.CENTER);
         frame.add(label[1],BorderLayout.NORTH);
@@ -126,7 +127,7 @@ class MineSetup implements ActionListener  {
     }
 
     public void hardMode(){
-
+        difficulty = "hard";
         label[1] = new JLabel("0", JLabel.CENTER);
         label[1].setHorizontalTextPosition(JLabel.CENTER);
         frame.add(label[1],BorderLayout.NORTH);
@@ -212,6 +213,7 @@ class MineSetup implements ActionListener  {
 
         if (leftRight){
             if (mineLoc.contains(Integer.parseInt(button.getActionCommand()))){
+                explosionMine();
                 button.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("explosion-boom.gif"))));
                 String soundName = "explosion.wav";
                 AudioInputStream audioInputStream = null;
@@ -245,6 +247,7 @@ class MineSetup implements ActionListener  {
             else{
                 int value = mineCounter(button.getActionCommand());
                 button.setText(String.valueOf(value));
+                button.setBackground(null);
                 button.setEnabled(false);
             }
 
@@ -362,5 +365,40 @@ class MineSetup implements ActionListener  {
 
         return counter;
     }
+
+    public void explosionMine(){
+        if(difficulty == "easy") {
+            for (int i = 3; i < 57; i++) {
+                if(!mineLoc.contains(Integer.parseInt(buttons[i].getActionCommand())) && buttons[i].getBackground() == Color.RED){
+                    buttons[i].setBackground(null);
+                    buttons[i].setForeground(Color.RED);
+                    buttons[i].setText("X");
+                }
+                else if (mineLoc.contains(Integer.parseInt(buttons[i].getActionCommand())) && buttons[i].getBackground() == Color.RED) {
+                    buttons[i].setBackground(null);
+                    buttons[i].setIcon(new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("land-mine.png"))));
+                }
+                else if (mineLoc.contains(Integer.parseInt(buttons[i].getActionCommand()))) {
+                    buttons[i].setIcon(new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("explosion-boom.gif"))));
+                }
+
+            }
+        }
+    }
+
+    public void winner() {
+        int countButton = 0;
+        if (difficulty == "easy") {
+            for (int i = 3; i < 57; i++) {
+                if(buttons[i].isEnabled()){
+                    countButton += 1;
+                }
+            }
+            if(countButton == 11){
+                JOptionPane.showMessageDialog(frame, "You Win");
+            }
+        }
+    }
+
 
 }
