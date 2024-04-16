@@ -249,6 +249,7 @@ class MineSetup implements ActionListener  {
                 button.setText(String.valueOf(value));
                 button.setBackground(null);
                 button.setEnabled(false);
+                winner();
             }
 
         }
