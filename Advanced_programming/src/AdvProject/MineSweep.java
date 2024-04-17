@@ -390,6 +390,9 @@ class MineSetup implements ActionListener  {
                 if (Integer.parseInt(mineCount) < 9) {
                     counter += 0;
                 }
+                else if((Integer.parseInt(mineCount)-3) % 6 == 0) {
+                    counter += 0;
+                }
                 else {
                     counter += 1;
                 }
@@ -415,7 +418,12 @@ class MineSetup implements ActionListener  {
                 }
             }
             if (mineLoc.contains(Integer.parseInt(mineCount) - 1)) {
-                counter += 1;
+                if((Integer.parseInt(mineCount)-3) % 6 == 0) {
+                    counter += 0;
+                }
+                else {
+                    counter += 1;
+                }
             }
             if (mineLoc.contains(Integer.parseInt(mineCount) + 1)) { // left hand bottom corner
                 if ((Integer.parseInt(mineCount)-2) % 6 == 0) {
@@ -428,6 +436,9 @@ class MineSetup implements ActionListener  {
             }
             if (mineLoc.contains(Integer.parseInt(mineCount) + 5)) {
                 if(Integer.parseInt(mineCount) > 50 && Integer.parseInt(mineCount) < 57) {
+                    counter += 0;
+                }
+                else if((Integer.parseInt(mineCount)-3) % 6 == 0) {
                     counter += 0;
                 }
                 else{
