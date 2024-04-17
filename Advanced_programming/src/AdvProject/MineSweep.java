@@ -62,6 +62,7 @@ class MineSetup implements ActionListener  {
             frame.add(panel, BorderLayout.CENTER);
             frame.setSize(600, 600); // sets the size for the window
             frame.setVisible(true);
+            frame.setExtendedState(frame.getExtendedState() | JFrame.MAXIMIZED_BOTH); // maximizes the frame
             mainMenu(); // builds the main menu
 
 
@@ -73,36 +74,36 @@ class MineSetup implements ActionListener  {
      * @author Karson Hodge
      */
     public void easyMode(){
-        difficulty = "easy";
+        difficulty = "easy"; // sets difficulty variable
         label[1] = new JLabel("0", JLabel.CENTER);
-        label[1].setHorizontalTextPosition(JLabel.CENTER);
+        label[1].setHorizontalTextPosition(JLabel.CENTER); // Location of label
         frame.add(label[1],BorderLayout.NORTH);
-        panel.setLayout(new GridLayout(10, 6));
+        panel.setLayout(new GridLayout(10, 6)); // uses the grid layout
         panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        for (int i = 3; i < 57; i++) {
+        for (int i = 3; i < 57; i++) { // loops through the 54 buttons needed
             buttons[i] = new JButton();
-            buttons[i].setFont(new Font("Arial", Font.PLAIN, 40));
+            buttons[i].setFont(new Font("Arial", Font.PLAIN, 40)); // font and size
             buttons[i].addActionListener(this);
-            buttons[i].setActionCommand(String.valueOf(i));
+            buttons[i].setActionCommand(String.valueOf(i)); // string index used for later
             int finalI = i;
-            buttons[i].addMouseListener(new MouseAdapter() {
+            buttons[i].addMouseListener(new MouseAdapter() { // controls the mouse events
                 public void mousePressed(MouseEvent me) {
-                    if(me.getButton() == MouseEvent.BUTTON1){
+                    if(me.getButton() == MouseEvent.BUTTON1){ // left click is pressed
                         leftRight = true;
                     }
                     else{
 
-                        Color colorButton = new Color(238,238,238);
+                        Color colorButton = new Color(238,238,238); // color of standard button
                         if(Objects.equals(buttons[finalI].getBackground(), colorButton)){
-                            buttons[finalI].setBackground(Color.RED);
+                            buttons[finalI].setBackground(Color.RED); // sets the button red with right click
                         }
                         else {
-                            buttons[finalI].setBackground(null);
+                            buttons[finalI].setBackground(null); // sets the button to the default
                         }
                     }
                 }
             });
-            panel.add(buttons[i]);
+            panel.add(buttons[i]); // finally adds the button to the panel
         }
     }
 
@@ -112,37 +113,36 @@ class MineSetup implements ActionListener  {
      * @author Karson Hodge
      */
     public void middleMode(){
-        difficulty = "medium";
+        difficulty = "medium"; // difficulty set
         label[1] = new JLabel("0", JLabel.CENTER);
-        label[1].setHorizontalTextPosition(JLabel.CENTER);
+        label[1].setHorizontalTextPosition(JLabel.CENTER); // sets the label to the center
         frame.add(label[1],BorderLayout.NORTH);
-        panel.setLayout(new GridLayout(18, 12));
+        panel.setLayout(new GridLayout(18, 12)); // grid layout
         panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        for (int i = 57; i < 273; i++) {
-            buttons[i] = new JButton();
+        for (int i = 57; i < 273; i++) { // adds the 216 buttons
+            buttons[i] = new JButton(); // creates the button object
             buttons[i].setFont(new Font("Arial", Font.PLAIN, 40));
-            buttons[i].addActionListener(this);
+            buttons[i].addActionListener(this); // adds a listener to the button
             buttons[i].setActionCommand(String.valueOf(i));
-            int finalI = i;
+            int finalI = i; // needed to access in the mouse function
             buttons[i].addMouseListener(new MouseAdapter() {
                 public void mousePressed(MouseEvent me) {
-                    if(me.getButton() == MouseEvent.BUTTON1){
-                        System.out.println("left click");
+                    if(me.getButton() == MouseEvent.BUTTON1){ // controls the left click
                         leftRight = true;
                     }
                     else{
 
                         Color colorButton = new Color(238,238,238);
                         if(Objects.equals(buttons[finalI].getBackground(), colorButton)){
-                            buttons[finalI].setBackground(Color.RED);
+                            buttons[finalI].setBackground(Color.RED); // sets the button to a red background
                         }
                         else {
-                            buttons[finalI].setBackground(null);
+                            buttons[finalI].setBackground(null); // sets the button to the default
                         }
                     }
                 }
             });
-            panel.add(buttons[i]);
+            panel.add(buttons[i]); // adds the button to the panel
         }
     }
 
@@ -154,36 +154,35 @@ class MineSetup implements ActionListener  {
      */
     public void hardMode(){
         difficulty = "hard";
-        label[1] = new JLabel("0", JLabel.CENTER);
+        label[1] = new JLabel("0", JLabel.CENTER); // creates a new label
         label[1].setHorizontalTextPosition(JLabel.CENTER);
-        frame.add(label[1],BorderLayout.NORTH);
+        frame.add(label[1],BorderLayout.NORTH); // sets the label to the top
         panel.setLayout(new GridLayout(26, 21));
-        panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        for (int i = 273; i < 819; i++) {
+        panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // adds space around the border
+        for (int i = 273; i < 819; i++) { // adds the buttons needed for hard mode
             buttons[i] = new JButton();
-            buttons[i].setFont(new Font("Arial", Font.PLAIN, 40));
+            buttons[i].setFont(new Font("Arial", Font.PLAIN, 40)); // sets a default font
             buttons[i].addActionListener(this);
-            buttons[i].setActionCommand(String.valueOf(i));
+            buttons[i].setActionCommand(String.valueOf(i)); // index for the button
             int finalI = i;
-            buttons[i].addMouseListener(new MouseAdapter() {
+            buttons[i].addMouseListener(new MouseAdapter() { // tracks mouse events
                 public void mousePressed(MouseEvent me) {
-                    if(me.getButton() == MouseEvent.BUTTON1){
-                        System.out.println("left click");
+                    if(me.getButton() == MouseEvent.BUTTON1){ // if left click is pressed
                         leftRight = true;
                     }
                     else{
 
                         Color colorButton = new Color(238,238,238);
-                        if(Objects.equals(buttons[finalI].getBackground(), colorButton)){
+                        if(Objects.equals(buttons[finalI].getBackground(), colorButton)){ // sets the button red if true
                             buttons[finalI].setBackground(Color.RED);
                         }
                         else {
-                            buttons[finalI].setBackground(null);
+                            buttons[finalI].setBackground(null); // sets the button to default if pressed again
                         }
                     }
                 }
             });
-            panel.add(buttons[i]);
+            panel.add(buttons[i]); // add button to the panel
         }
     }
 
@@ -193,26 +192,26 @@ class MineSetup implements ActionListener  {
      * @param e the event to be processed
      */
     public void actionPerformed(ActionEvent e) {
-        JButton button = (JButton) e.getSource();
+        JButton button = (JButton) e.getSource(); // get the button that was clicked
 
-        if (button == buttons[0]) {
+        if (button == buttons[0]) { // easy mode button
             timeHold = 0;
-            panel.removeAll();
-            easyMode();
+            panel.removeAll(); // clears preexisting objects
+            easyMode(); // runs the easymode function
             panel.revalidate();
-            panel.repaint();
-            mineLoc = minePlacement("easy");
-            timer.scheduleAtFixedRate(task1, 1000, 1000);
+            panel.repaint(); // draws everything
+            mineLoc = minePlacement("easy"); // sets the mine placement for easy
+            timer.scheduleAtFixedRate(task1, 1000, 1000); // set the timer to run
 
         }
-        else if (button == buttons[1]) {
-            timeHold = 0;
+        else if (button == buttons[1]) { // medium mode
+            timeHold = 0; // sets timer to zero
             panel.removeAll();
-            middleMode();
+            middleMode(); // runs the medium mode
             panel.revalidate();
-            panel.repaint();
-            mineLoc = minePlacement("medium");
-            timer.scheduleAtFixedRate(task2, 1000, 1000);
+            panel.repaint(); // draws graphics
+            mineLoc = minePlacement("medium"); // mine placement medium
+            timer.scheduleAtFixedRate(task2, 1000, 1000); // timer for every second
 
         }
         else if (button == buttons[2]) {
