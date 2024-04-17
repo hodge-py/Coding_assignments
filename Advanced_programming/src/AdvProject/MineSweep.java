@@ -214,58 +214,36 @@ class MineSetup implements ActionListener  {
             timer.scheduleAtFixedRate(task2, 1000, 1000); // timer for every second
 
         }
-        else if (button == buttons[2]) {
+        else if (button == buttons[2]) { // hard mode button
             timeHold = 0;
-            panel.removeAll();
-            hardMode();
+            panel.removeAll(); // removes the existing items
+            hardMode(); // runs hard mode
             panel.revalidate();
-            panel.repaint();
-            mineLoc = minePlacement("hard");
-            timer.scheduleAtFixedRate(task3, 1000, 1000);
+            panel.repaint(); // draws graphics
+            mineLoc = minePlacement("hard"); // places mines
+            timer.scheduleAtFixedRate(task3, 1000, 1000); // sets the timer for 1 second
 
         }
 
-        if (leftRight){
-            if (mineLoc.contains(Integer.parseInt(button.getActionCommand()))){
-                explosionMine();
-                button.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("explosion-boom.gif"))));
-                String soundName = "explosion.wav";
-                AudioInputStream audioInputStream = null;
-                try {
-                    audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());
-                } catch (UnsupportedAudioFileException ex) {
-                    throw new RuntimeException(ex);
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
-                Clip clip = null;
-                try {
-                    clip = AudioSystem.getClip();
-                } catch (LineUnavailableException ex) {
-                    throw new RuntimeException(ex);
-                }
-                try {
-                    clip.open(audioInputStream);
-                } catch (LineUnavailableException ex) {
-                    throw new RuntimeException(ex);
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
-                clip.start();
+        if (leftRight){ // if left click is true
+            if (mineLoc.contains(Integer.parseInt(button.getActionCommand()))){ // checks if the button is in the mine location
+                explosionMine(); // sets off the mines
+                button.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("explosion-boom.gif")))); // runs the mine gif
+
                 task1.cancel();
-                task2.cancel();
+                task2.cancel(); // stops all timers
                 task3.cancel();
-                JOptionPane.showMessageDialog(frame, "Game Over");
+                JOptionPane.showMessageDialog(frame, "Game Over"); // game over message
                 frame.remove(label[1]);
-                leftRight = false;
-                mainMenu();
+                leftRight = false; // set left click false
+                mainMenu(); // return to mainmenu
             }
             else{
-                int value = mineCounter(button.getActionCommand());
+                int value = mineCounter(button.getActionCommand(),difficulty); // get the index
                 button.setText(String.valueOf(value));
-                button.setBackground(null);
+                button.setBackground(null); // set value to null
                 button.setEnabled(false);
-                winner();
+                winner(); // check if it is a winner
             }
 
         }
@@ -279,64 +257,67 @@ class MineSetup implements ActionListener  {
      * @author Karson Hodge
      */
     public void mainMenu(){
-        panel.removeAll();
+        panel.removeAll(); // resets panel
         panel.setLayout(new GridLayout(4, 1));
-        label[0] = new JLabel("Pick a difficulty");
-        panel.add(label[0]);
+        label[0] = new JLabel("Pick a difficulty"); // label with description
+        label[0].setHorizontalTextPosition(JLabel.CENTER);
+        panel.add(label[0]); // add label to panel
         buttons[0] = new JButton("Beginner");
-        buttons[1] = new JButton("Intermediate");
+        buttons[1] = new JButton("Intermediate"); // three buttons for difficulty
         buttons[2] = new JButton("Advanced");
         panel.add(buttons[0]);
-        panel.add(buttons[1]);
+        panel.add(buttons[1]); // adds each button the panel
         panel.add(buttons[2]);
         buttons[0].addActionListener(this);
-        buttons[1].addActionListener(this);
+        buttons[1].addActionListener(this); // adds a listener for each button
         buttons[2].addActionListener(this);
         panel.revalidate();
-        panel.repaint();
+        panel.repaint(); // draws everything
 
-        task1 = new TimerTask() {
+        task1 = new TimerTask() { // timer task for easy mode
             @Override
             public void run() {
-                timeHold += 1;
+                timeHold += 1; // increase by one
                 label[1].setText(String.valueOf(timeHold));
-                if (timeHold == 60) {
+                if (timeHold == 60) { // if 60 then run this
+                    explosionMine(); // explode mines
+                    JOptionPane.showMessageDialog(frame, "Game Over");
+                    frame.remove(label[1]); //remove label
+                    this.cancel();
+                    leftRight = false; // set left click false
+                    mainMenu(); // mainmenu function
+                }
+            }
+        };
+
+        task2 = new TimerTask() { // timer for medium
+            @Override
+            public void run() {
+                timeHold += 1; // add one to timer
+                label[1].setText(String.valueOf(timeHold));
+                if (timeHold == 180) { // if time reaches 180
                     explosionMine();
                     JOptionPane.showMessageDialog(frame, "Game Over");
-                    frame.remove(label[1]);
+                    frame.remove(label[1]); // remove the label
                     this.cancel();
-                    leftRight = false;
+                    leftRight = false; //  sets left click to false
                     mainMenu();
                 }
             }
         };
 
-        task2 = new TimerTask() {
+        task3 = new TimerTask() { // timer for hard mode
             @Override
             public void run() {
-                timeHold += 1;
+                timeHold += 1; // adds 1 to the time
                 label[1].setText(String.valueOf(timeHold));
-                if (timeHold == 180) {
+                if (timeHold == 660) { // if timer hits 660
+                    explosionMine();
                     JOptionPane.showMessageDialog(frame, "Game Over");
-                    frame.remove(label[1]);
-                    this.cancel();
+                    frame.remove(label[1]); // removes the label
+                    this.cancel(); // cancel timer
                     leftRight = false;
-                    mainMenu();
-                }
-            }
-        };
-
-        task3 = new TimerTask() {
-            @Override
-            public void run() {
-                timeHold += 1;
-                label[1].setText(String.valueOf(timeHold));
-                if (timeHold == 660) {
-                    JOptionPane.showMessageDialog(frame, "Game Over");
-                    frame.remove(label[1]);
-                    this.cancel();
-                    leftRight = false;
-                    mainMenu();
+                    mainMenu(); // return to main menu
                 }
             }
         };
@@ -352,48 +333,47 @@ class MineSetup implements ActionListener  {
      * @return arraylist with the mine locations
      */
     public ArrayList<Integer> minePlacement(String diff){
-        ArrayList<Integer> arr = new ArrayList<Integer>();
-        Random rand = new Random();
-        int randHold;
+        ArrayList<Integer> arr = new ArrayList<Integer>(); // arraylist for mines
+        int randHold; // holds the random int
         int count = 0;
-        if(diff == "easy"){
+        if(diff == "easy"){ // easy setting
             while(count < 11) {
-                randHold = ThreadLocalRandom.current().nextInt(3, 56 + 1);
+                randHold = ThreadLocalRandom.current().nextInt(3, 56 + 1); // placement on button number
                 if (arr.contains(randHold)) {
 
                 }
-                else{
+                else{ // if the arr doesnt contain the random number add it
                     arr.add(randHold);
                     count += 1;
                 }
             }
         }
-        else if(diff == "medium"){
+        else if(diff == "medium"){ // medium difficult
                 while(count < 36) {
-                    randHold = ThreadLocalRandom.current().nextInt(57, 272 + 1);
+                    randHold = ThreadLocalRandom.current().nextInt(57, 272 + 1); // random value
                     if (arr.contains(randHold)) {
 
                     }
-                    else{
+                    else{ // add if doesnt exist
                         arr.add(randHold);
                         count += 1;
                     }
                 }
         }
-        else if(diff == "hard"){
+        else if(diff == "hard"){ // hard difficult
                 while(count < 92) {
-                    randHold = ThreadLocalRandom.current().nextInt(273, 818 + 1);
+                    randHold = ThreadLocalRandom.current().nextInt(273, 818 + 1); // random value
                     if (arr.contains(randHold)) {
 
                     }
-                    else{
+                    else{ // adds 92 random values
                         arr.add(randHold);
                         count += 1;
                     }
                 }
         }
 
-        return arr;
+        return arr; // return the array for use
     }
 
     /**
@@ -402,34 +382,138 @@ class MineSetup implements ActionListener  {
      * @param mineCount the array number of the button
      * @return counter, the amount of mines nearby
      */
-    public int mineCounter(String mineCount){
+    public int mineCounter(String mineCount, String diff){ // checks for mines around
         int counter = 0;
-        if(mineLoc.contains(Integer.parseInt(mineCount)-7)){
-            counter += 1;
-        }
-        if(mineLoc.contains(Integer.parseInt(mineCount)-6)){
-            counter += 1;
-        }
-        if(mineLoc.contains(Integer.parseInt(mineCount)-5)){
-            counter += 1;
-        }
-        if(mineLoc.contains(Integer.parseInt(mineCount)-1)){
-            counter += 1;
-        }
-        if(mineLoc.contains(Integer.parseInt(mineCount)+1)){
-            counter += 1;
-        }
-        if(mineLoc.contains(Integer.parseInt(mineCount)+5)){
-            counter += 1;
-        }
-        if(mineLoc.contains(Integer.parseInt(mineCount)+6)){
-            counter += 1;
-        }
-        if(mineLoc.contains(Integer.parseInt(mineCount)+7)){
-            counter += 1;
+        System.out.println(mineCount);
+        if(diff == "easy") {
+            if (mineLoc.contains(Integer.parseInt(mineCount) - 7)) { // in the left hand corner
+                if (Integer.parseInt(mineCount) < 9) {
+                    counter += 0;
+                }
+                else {
+                    counter += 1;
+                }
+            }
+            if (mineLoc.contains(Integer.parseInt(mineCount) - 6)) {
+                if (Integer.parseInt(mineCount) < 9) {
+                    counter += 0;
+                }
+                else {
+                    counter += 1;
+                }
+            }
+            if (mineLoc.contains(Integer.parseInt(mineCount) - 5)) { // right hand corner
+                if ((Integer.parseInt(mineCount)-2) % 6 == 0) {
+                    counter += 0;
+                    System.out.println("end1");
+                }
+                else if (Integer.parseInt(mineCount) < 9) {
+                    counter += 0;
+                }
+                else {
+                    counter += 1;
+                }
+            }
+            if (mineLoc.contains(Integer.parseInt(mineCount) - 1)) {
+                counter += 1;
+            }
+            if (mineLoc.contains(Integer.parseInt(mineCount) + 1)) { // left hand bottom corner
+                if ((Integer.parseInt(mineCount)-2) % 6 == 0) {
+                    counter += 0;
+                    System.out.println("end");
+                }
+                else {
+                    counter += 1;
+                }
+            }
+            if (mineLoc.contains(Integer.parseInt(mineCount) + 5)) {
+                if(Integer.parseInt(mineCount) > 50 && Integer.parseInt(mineCount) < 57) {
+                    counter += 0;
+                }
+                else{
+                    counter += 1;
+                }
+            }
+            if (mineLoc.contains(Integer.parseInt(mineCount) + 6)) { // right hand bottom corner
+                if(Integer.parseInt(mineCount) > 50 && Integer.parseInt(mineCount) < 57) {
+                    counter += 0;
+                }
+                else{
+                    counter += 1;
+                }
+            }
+            if (mineLoc.contains(Integer.parseInt(mineCount) + 7)) {
+                if ((Integer.parseInt(mineCount)-2) % 6 == 0) {
+                    counter += 0;
+                    System.out.println("end");
+                }
+                else if(Integer.parseInt(mineCount) > 50 && Integer.parseInt(mineCount) < 57) {
+                    counter += 0;
+                }
+                else {
+                    counter += 1;
+                }
+
+            }
         }
 
-        return counter;
+        else if(diff == "medium") {
+            if (mineLoc.contains(Integer.parseInt(mineCount) - 13)) { // in the left hand corner
+                counter += 1;
+            }
+            if (mineLoc.contains(Integer.parseInt(mineCount) - 12)) {
+                counter += 1;
+            }
+            if (mineLoc.contains(Integer.parseInt(mineCount) - 11)) { // right hand corner
+                counter += 1;
+            }
+            if (mineLoc.contains(Integer.parseInt(mineCount) - 1)) {
+                counter += 1;
+            }
+            if (mineLoc.contains(Integer.parseInt(mineCount) + 1)) { // left hand bottom corner
+                counter += 1;
+            }
+            if (mineLoc.contains(Integer.parseInt(mineCount) + 11)) {
+                counter += 1;
+            }
+            if (mineLoc.contains(Integer.parseInt(mineCount) + 12)) { // right hand bottom corner
+                counter += 1;
+            }
+            if (mineLoc.contains(Integer.parseInt(mineCount) + 13)) {
+                counter += 1;
+            }
+        }
+
+        else if(diff == "hard") {
+            if (mineLoc.contains(Integer.parseInt(mineCount) - 22)) { // in the left hand corner
+                counter += 1;
+            }
+            if (mineLoc.contains(Integer.parseInt(mineCount) - 21)) {
+                counter += 1;
+            }
+            if (mineLoc.contains(Integer.parseInt(mineCount) - 20)) { // right hand corner
+                counter += 1;
+            }
+            if (mineLoc.contains(Integer.parseInt(mineCount) - 1)) {
+                counter += 1;
+            }
+            if (mineLoc.contains(Integer.parseInt(mineCount) + 1)) { // left hand bottom corner
+                counter += 1;
+            }
+            if (mineLoc.contains(Integer.parseInt(mineCount) + 20)) {
+                counter += 1;
+            }
+            if (mineLoc.contains(Integer.parseInt(mineCount) + 21)) { // right hand bottom corner
+                counter += 1;
+            }
+            if (mineLoc.contains(Integer.parseInt(mineCount) + 22)) {
+                counter += 1;
+            }
+        }
+
+
+
+        return counter; // return the amount
     }
 
 
@@ -492,6 +576,32 @@ class MineSetup implements ActionListener  {
 
             }
         }
+
+
+        String soundName = "explosion.wav"; // explosion file
+        AudioInputStream audioInputStream = null;
+        try {
+            audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile()); // creates an audio stream
+        } catch (UnsupportedAudioFileException ex) {
+            throw new RuntimeException(ex);
+        } catch (IOException ex) {
+            throw new RuntimeException(ex); // exception if there is an error
+        }
+        Clip clip = null;
+        try {
+            clip = AudioSystem.getClip(); // gets the clip
+        } catch (LineUnavailableException ex) {
+            throw new RuntimeException(ex);
+        }
+        try {
+            clip.open(audioInputStream); // opens the clip
+        } catch (LineUnavailableException ex) {
+            throw new RuntimeException(ex);
+        } catch (IOException ex) { // catch exception
+            throw new RuntimeException(ex);
+        }
+        clip.start(); // run the clip
+
     }
 
     /**
