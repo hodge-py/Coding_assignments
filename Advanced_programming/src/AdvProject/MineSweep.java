@@ -112,13 +112,22 @@ class MineSetup implements ActionListener  {
             buttons[i].setFont(new Font("Arial", Font.PLAIN, 40));
             buttons[i].addActionListener(this);
             buttons[i].setActionCommand(String.valueOf(i));
+            int finalI = i;
             buttons[i].addMouseListener(new MouseAdapter() {
                 public void mousePressed(MouseEvent me) {
                     if(me.getButton() == MouseEvent.BUTTON1){
                         System.out.println("left click");
+                        leftRight = true;
                     }
                     else{
-                        System.out.println("right click");
+
+                        Color colorButton = new Color(238,238,238);
+                        if(Objects.equals(buttons[finalI].getBackground(), colorButton)){
+                            buttons[finalI].setBackground(Color.RED);
+                        }
+                        else {
+                            buttons[finalI].setBackground(null);
+                        }
                     }
                 }
             });
@@ -137,15 +146,23 @@ class MineSetup implements ActionListener  {
             buttons[i] = new JButton();
             buttons[i].setFont(new Font("Arial", Font.PLAIN, 40));
             buttons[i].addActionListener(this);
+            buttons[i].setActionCommand(String.valueOf(i));
             int finalI = i;
             buttons[i].addMouseListener(new MouseAdapter() {
                 public void mousePressed(MouseEvent me) {
                     if(me.getButton() == MouseEvent.BUTTON1){
                         System.out.println("left click");
+                        leftRight = true;
                     }
                     else{
-                        System.out.println("right click");
-                        System.out.println(buttons[finalI]);
+
+                        Color colorButton = new Color(238,238,238);
+                        if(Objects.equals(buttons[finalI].getBackground(), colorButton)){
+                            buttons[finalI].setBackground(Color.RED);
+                        }
+                        else {
+                            buttons[finalI].setBackground(null);
+                        }
                     }
                 }
             });
@@ -172,20 +189,8 @@ class MineSetup implements ActionListener  {
             middleMode();
             panel.revalidate();
             panel.repaint();
-            timer.scheduleAtFixedRate(new TimerTask() {
-                @Override
-                public void run() {
-                    timeHold += 1;
-                    label[1].setText(String.valueOf(timeHold));
-                    if (timeHold == 180) {
-                        JOptionPane.showMessageDialog(frame, "Game Over");
-                        frame.remove(label[1]);
-                        this.cancel();
-                        leftRight = false;
-                        mainMenu();
-                    }
-                }
-            }, 1000, 1000);
+            mineLoc = minePlacement("medium");
+            timer.scheduleAtFixedRate(task2, 1000, 1000);
 
         }
         else if (button == buttons[2]) {
@@ -194,20 +199,8 @@ class MineSetup implements ActionListener  {
             hardMode();
             panel.revalidate();
             panel.repaint();
-            timer.scheduleAtFixedRate(new TimerTask() {
-                @Override
-                public void run() {
-                    timeHold += 1;
-                    label[1].setText(String.valueOf(timeHold));
-                    if (timeHold == 660) {
-                        JOptionPane.showMessageDialog(frame, "Game Over");
-                        frame.remove(label[1]);
-                        this.cancel();
-                        leftRight = false;
-                        mainMenu();
-                    }
-                }
-            }, 1000, 1000);
+            mineLoc = minePlacement("hard");
+            timer.scheduleAtFixedRate(task3, 1000, 1000);
 
         }
 
@@ -239,6 +232,8 @@ class MineSetup implements ActionListener  {
                 }
                 clip.start();
                 task1.cancel();
+                task2.cancel();
+                task3.cancel();
                 JOptionPane.showMessageDialog(frame, "Game Over");
                 frame.remove(label[1]);
                 leftRight = false;
@@ -280,6 +275,36 @@ class MineSetup implements ActionListener  {
                 label[1].setText(String.valueOf(timeHold));
                 if (timeHold == 60) {
                     explosionMine();
+                    JOptionPane.showMessageDialog(frame, "Game Over");
+                    frame.remove(label[1]);
+                    this.cancel();
+                    leftRight = false;
+                    mainMenu();
+                }
+            }
+        };
+
+        task2 = new TimerTask() {
+            @Override
+            public void run() {
+                timeHold += 1;
+                label[1].setText(String.valueOf(timeHold));
+                if (timeHold == 180) {
+                    JOptionPane.showMessageDialog(frame, "Game Over");
+                    frame.remove(label[1]);
+                    this.cancel();
+                    leftRight = false;
+                    mainMenu();
+                }
+            }
+        };
+
+        task3 = new TimerTask() {
+            @Override
+            public void run() {
+                timeHold += 1;
+                label[1].setText(String.valueOf(timeHold));
+                if (timeHold == 660) {
                     JOptionPane.showMessageDialog(frame, "Game Over");
                     frame.remove(label[1]);
                     this.cancel();
@@ -386,6 +411,42 @@ class MineSetup implements ActionListener  {
 
             }
         }
+
+        else if(difficulty == "medium"){
+            for (int i = 57; i < 273; i++) {
+                if(!mineLoc.contains(Integer.parseInt(buttons[i].getActionCommand())) && buttons[i].getBackground() == Color.RED){
+                    buttons[i].setBackground(null);
+                    buttons[i].setForeground(Color.RED);
+                    buttons[i].setText("X");
+                }
+                else if (mineLoc.contains(Integer.parseInt(buttons[i].getActionCommand())) && buttons[i].getBackground() == Color.RED) {
+                    buttons[i].setBackground(null);
+                    buttons[i].setIcon(new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("land-mine.png"))));
+                }
+                else if (mineLoc.contains(Integer.parseInt(buttons[i].getActionCommand()))) {
+                    buttons[i].setIcon(new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("explosion-boom.gif"))));
+                }
+
+            }
+        }
+
+        else if(difficulty == "hard"){
+            for (int i = 273; i < 819; i++) {
+                if(!mineLoc.contains(Integer.parseInt(buttons[i].getActionCommand())) && buttons[i].getBackground() == Color.RED){
+                    buttons[i].setBackground(null);
+                    buttons[i].setForeground(Color.RED);
+                    buttons[i].setText("X");
+                }
+                else if (mineLoc.contains(Integer.parseInt(buttons[i].getActionCommand())) && buttons[i].getBackground() == Color.RED) {
+                    buttons[i].setBackground(null);
+                    buttons[i].setIcon(new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("land-mine.png"))));
+                }
+                else if (mineLoc.contains(Integer.parseInt(buttons[i].getActionCommand()))) {
+                    buttons[i].setIcon(new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("explosion-boom.gif"))));
+                }
+
+            }
+        }
     }
 
     public void winner() {
@@ -399,11 +460,47 @@ class MineSetup implements ActionListener  {
             if(countButton == 11){
                 JOptionPane.showMessageDialog(frame, "You Win");
                 task1.cancel();
+                task2.cancel();
+                task3.cancel();
                 frame.remove(label[1]);
                 leftRight = false;
                 mainMenu();
             }
         }
+        else if(difficulty == "medium"){
+            for (int i = 57; i < 273; i++) {
+                if(buttons[i].isEnabled()){
+                    countButton += 1;
+                }
+            }
+            if(countButton == 36){
+                JOptionPane.showMessageDialog(frame, "You Win");
+                task1.cancel();
+                task2.cancel();
+                task3.cancel();
+                frame.remove(label[1]);
+                leftRight = false;
+                mainMenu();
+            }
+        }
+        else if(difficulty == "hard"){
+            for (int i = 273; i < 819; i++) {
+                if(buttons[i].isEnabled()){
+                    countButton += 1;
+                }
+            }
+            if(countButton == 92){
+                JOptionPane.showMessageDialog(frame, "You Win");
+                task1.cancel();
+                task2.cancel();
+                task3.cancel();
+                frame.remove(label[1]);
+                leftRight = false;
+                mainMenu();
+            }
+        }
+
+
     }
 
 
