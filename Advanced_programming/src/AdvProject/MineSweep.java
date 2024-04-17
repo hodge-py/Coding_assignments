@@ -11,6 +11,11 @@ import java.util.Timer;
 import java.util.concurrent.ThreadLocalRandom;
 
 
+/**
+ * main class that provides the instance for the game class and then runs the main program to build it
+ *
+ * @author
+ */
 public class MineSweep {
 
     public static void main(String[] args) {
@@ -22,24 +27,30 @@ public class MineSweep {
     }
 }
 
-
+/**
+ * The class that builds the frame and then all the other parts of the game
+ *
+ * @author Karson Hodge
+ */
 class MineSetup implements ActionListener  {
     private JFrame frame; //established the main window
     private JPanel panel;
-    private JButton[] buttons = new JButton[900]; // thirteen buttons will be used
-    private static JLabel[] label = new JLabel[2];
-    private boolean xTurn = true; // keep track of who's turn
-    private String turn; // for tracking what stage
-    Timer timer = new Timer();
+    private JButton[] buttons = new JButton[900]; // 900 buttons will be used
+    private static JLabel[] label = new JLabel[2]; // Labels used in the game
+    Timer timer = new Timer(); // timer instance for timing
     int timeHold = 0;
-    boolean leftRight = false;
-    ArrayList<Integer> mineLoc;
+    boolean leftRight = false; // for keeping track of left click
+    ArrayList<Integer> mineLoc; // array for mines
     TimerTask task1;
-    TimerTask task2;
+    TimerTask task2; // Timer task for each second check
     TimerTask task3;
-    String difficulty;
+    String difficulty; // The difficulty chosen
 
-
+    /**
+     * Builds the main window and then runs the mainMenu function
+     *
+     * @author Karson Hodge
+     */
     public void setup(){
 
 
@@ -51,21 +62,16 @@ class MineSetup implements ActionListener  {
             frame.add(panel, BorderLayout.CENTER);
             frame.setSize(600, 600); // sets the size for the window
             frame.setVisible(true);
-            mouseAdd();
-            mainMenu();
+            mainMenu(); // builds the main menu
 
 
     }
 
-    public void mouseAdd() {
-            frame.addMouseListener(new MouseAdapter() {
-                public void mousePressed(MouseEvent me) {
-                    System.out.println(me.getButton());
-                }
-            });
-
-    }
-
+    /**
+     * easy mode function, 60 seconds, 11 mines
+     *
+     * @author Karson Hodge
+     */
     public void easyMode(){
         difficulty = "easy";
         label[1] = new JLabel("0", JLabel.CENTER);
@@ -100,6 +106,11 @@ class MineSetup implements ActionListener  {
             panel.add(buttons[i]);
         }
     }
+
+    /**
+     * middle mode setting, 180 seconds, 36 mines
+     *
+     */
     public void middleMode(){
         difficulty = "medium";
         label[1] = new JLabel("0", JLabel.CENTER);
@@ -135,6 +146,12 @@ class MineSetup implements ActionListener  {
         }
     }
 
+
+    /**
+     * hard mode setting, 660 seconds 92 mines
+     *
+     * @author Karson Hodge
+     */
     public void hardMode(){
         difficulty = "hard";
         label[1] = new JLabel("0", JLabel.CENTER);
@@ -170,6 +187,11 @@ class MineSetup implements ActionListener  {
         }
     }
 
+    /**
+     * keeps track of button presses and runs the corresponding functions
+     *
+     * @param e the event to be processed
+     */
     public void actionPerformed(ActionEvent e) {
         JButton button = (JButton) e.getSource();
 
@@ -251,6 +273,12 @@ class MineSetup implements ActionListener  {
 
     }
 
+
+    /**
+     * function that builds the main menu for use
+     *
+     * @author Karson Hodge
+     */
     public void mainMenu(){
         panel.removeAll();
         panel.setLayout(new GridLayout(4, 1));
@@ -317,6 +345,13 @@ class MineSetup implements ActionListener  {
 
     }
 
+
+    /**
+     * Places the mines in an array for reference later
+     *
+     * @param diff mine placement difficulty
+     * @return arraylist with the mine locations
+     */
     public ArrayList<Integer> minePlacement(String diff){
         ArrayList<Integer> arr = new ArrayList<Integer>();
         Random rand = new Random();
@@ -362,7 +397,12 @@ class MineSetup implements ActionListener  {
         return arr;
     }
 
-
+    /**
+     * Counts how many mines are nearby
+     *
+     * @param mineCount the array number of the button
+     * @return counter, the amount of mines nearby
+     */
     public int mineCounter(String mineCount){
         int counter = 0;
         if(mineLoc.contains(Integer.parseInt(mineCount)-7)){
@@ -393,6 +433,12 @@ class MineSetup implements ActionListener  {
         return counter;
     }
 
+
+    /**
+     * function that is ran when a mine exploded. red X's for missed mines, mines if marked correctly and explosion sound and animation
+     *
+     * @author Karson Hodge
+     */
     public void explosionMine(){
         if(difficulty == "easy") {
             for (int i = 3; i < 57; i++) {
@@ -449,6 +495,11 @@ class MineSetup implements ActionListener  {
         }
     }
 
+    /**
+     * Checks if the winner has won by seeing if the remaining buttons match the mine count.
+     *
+     * @author Karson Hodge
+     */
     public void winner() {
         int countButton = 0;
         if (difficulty == "easy") {
