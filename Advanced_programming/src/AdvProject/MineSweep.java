@@ -390,7 +390,7 @@ class MineSetup implements ActionListener  {
                 if (Integer.parseInt(mineCount) < 9) {
                     counter += 0;
                 }
-                else if((Integer.parseInt(mineCount)-3) % 6 == 0) {
+                else if((Integer.parseInt(mineCount)-3) % 6 == 0) { // checks if left exist
                     counter += 0;
                 }
                 else {
@@ -398,7 +398,7 @@ class MineSetup implements ActionListener  {
                 }
             }
             if (mineLoc.contains(Integer.parseInt(mineCount) - 6)) {
-                if (Integer.parseInt(mineCount) < 9) {
+                if (Integer.parseInt(mineCount) < 9) { // dont count top if on the first row
                     counter += 0;
                 }
                 else {
@@ -408,9 +408,8 @@ class MineSetup implements ActionListener  {
             if (mineLoc.contains(Integer.parseInt(mineCount) - 5)) { // right hand corner
                 if ((Integer.parseInt(mineCount)-2) % 6 == 0) {
                     counter += 0;
-                    System.out.println("end1");
                 }
-                else if (Integer.parseInt(mineCount) < 9) {
+                else if (Integer.parseInt(mineCount) < 9) { // checks if it is on the first row
                     counter += 0;
                 }
                 else {
@@ -418,7 +417,7 @@ class MineSetup implements ActionListener  {
                 }
             }
             if (mineLoc.contains(Integer.parseInt(mineCount) - 1)) {
-                if((Integer.parseInt(mineCount)-3) % 6 == 0) {
+                if((Integer.parseInt(mineCount)-3) % 6 == 0) { // checks if it is in the first column
                     counter += 0;
                 }
                 else {
@@ -427,18 +426,17 @@ class MineSetup implements ActionListener  {
             }
             if (mineLoc.contains(Integer.parseInt(mineCount) + 1)) { // left hand bottom corner
                 if ((Integer.parseInt(mineCount)-2) % 6 == 0) {
-                    counter += 0;
-                    System.out.println("end");
+                    counter += 0; // add zero if it is on the last column
                 }
                 else {
                     counter += 1;
                 }
             }
             if (mineLoc.contains(Integer.parseInt(mineCount) + 5)) {
-                if(Integer.parseInt(mineCount) > 50 && Integer.parseInt(mineCount) < 57) {
+                if(Integer.parseInt(mineCount) > 50 && Integer.parseInt(mineCount) < 57) { // checks if it is on the last row
                     counter += 0;
                 }
-                else if((Integer.parseInt(mineCount)-3) % 6 == 0) {
+                else if((Integer.parseInt(mineCount)-3) % 6 == 0) { // and first column
                     counter += 0;
                 }
                 else{
@@ -446,7 +444,7 @@ class MineSetup implements ActionListener  {
                 }
             }
             if (mineLoc.contains(Integer.parseInt(mineCount) + 6)) { // right hand bottom corner
-                if(Integer.parseInt(mineCount) > 50 && Integer.parseInt(mineCount) < 57) {
+                if(Integer.parseInt(mineCount) > 50 && Integer.parseInt(mineCount) < 57) { // checks if it is on the last row
                     counter += 0;
                 }
                 else{
@@ -454,11 +452,11 @@ class MineSetup implements ActionListener  {
                 }
             }
             if (mineLoc.contains(Integer.parseInt(mineCount) + 7)) {
-                if ((Integer.parseInt(mineCount)-2) % 6 == 0) {
+                if ((Integer.parseInt(mineCount)-2) % 6 == 0) { // check if it is on the last column
                     counter += 0;
                     System.out.println("end");
                 }
-                else if(Integer.parseInt(mineCount) > 50 && Integer.parseInt(mineCount) < 57) {
+                else if(Integer.parseInt(mineCount) > 50 && Integer.parseInt(mineCount) < 57) { // checks if it is the last row
                     counter += 0;
                 }
                 else {
@@ -470,55 +468,160 @@ class MineSetup implements ActionListener  {
 
         else if(diff == "medium") {
             if (mineLoc.contains(Integer.parseInt(mineCount) - 13)) { // in the left hand corner
-                counter += 1;
+                if (Integer.parseInt(mineCount) < 69) {
+                    counter += 0;
+                }
+                else if((Integer.parseInt(mineCount)-9) % 12 == 0) { // checks if left exist
+                    counter += 0;
+                }
+                else {
+                    counter += 1;
+                }
             }
             if (mineLoc.contains(Integer.parseInt(mineCount) - 12)) {
-                counter += 1;
+                if (Integer.parseInt(mineCount) < 69) { // checks if it is on the first row
+                    counter += 0;
+                }
+                else {
+                    counter += 1;
+                }
             }
             if (mineLoc.contains(Integer.parseInt(mineCount) - 11)) { // right hand corner
-                counter += 1;
+                if ((Integer.parseInt(mineCount)-8) % 12 == 0) {
+                    counter += 0;
+                }
+                else if (Integer.parseInt(mineCount) < 69) {  // checks if it is on the first row
+                    counter += 0;
+                }
+                else {
+                    counter += 1;
+                }
             }
             if (mineLoc.contains(Integer.parseInt(mineCount) - 1)) {
-                counter += 1;
+                if((Integer.parseInt(mineCount)-9) % 12 == 0) { // checks if it is on the first column
+                    counter += 0;
+                }
+                else {
+                    counter += 1;
+                }
             }
-            if (mineLoc.contains(Integer.parseInt(mineCount) + 1)) { // left hand bottom corner
-                counter += 1;
+            if (mineLoc.contains(Integer.parseInt(mineCount) + 1)) { // right side corner
+                if ((Integer.parseInt(mineCount)-8) % 12 == 0) { // checks if it is on the last column
+                    counter += 0;
+                }
+                else {
+                    counter += 1;
+                }
             }
             if (mineLoc.contains(Integer.parseInt(mineCount) + 11)) {
-                counter += 1;
+                if(Integer.parseInt(mineCount) > 260 && Integer.parseInt(mineCount) < 273) { // checks if it is on the last row
+                    counter += 0;
+                }
+                else if((Integer.parseInt(mineCount)-9) % 12 == 0) { // checks if it is the first column
+                    counter += 0;
+                }
+                else{
+                    counter += 1;
+                }
             }
             if (mineLoc.contains(Integer.parseInt(mineCount) + 12)) { // right hand bottom corner
-                counter += 1;
+                if(Integer.parseInt(mineCount) > 260 && Integer.parseInt(mineCount) < 273) { // last row check
+                    counter += 0;
+                }
+                else{
+                    counter += 1;
+                }
             }
             if (mineLoc.contains(Integer.parseInt(mineCount) + 13)) {
-                counter += 1;
+                if ((Integer.parseInt(mineCount)-8) % 12 == 0) { // last column check
+                    counter += 0;
+                    System.out.println("end");
+                }
+                else if(Integer.parseInt(mineCount) > 260 && Integer.parseInt(mineCount) < 273) { // last row check
+                    counter += 0;
+                }
+                else {
+                    counter += 1;
+                }
             }
         }
 
         else if(diff == "hard") {
             if (mineLoc.contains(Integer.parseInt(mineCount) - 22)) { // in the left hand corner
-                counter += 1;
+                if (Integer.parseInt(mineCount) < 294) {
+                    counter += 0;
+                }
+                else if((Integer.parseInt(mineCount)) % 21 == 0) { // checks first column
+                    counter += 0;
+                }
+                else {
+                    counter += 1;
+                }
             }
             if (mineLoc.contains(Integer.parseInt(mineCount) - 21)) {
-                counter += 1;
+                if (Integer.parseInt(mineCount) < 295) { //checks if first row
+                    counter += 0;
+                }
+                else {
+                    counter += 1;
+                }
             }
             if (mineLoc.contains(Integer.parseInt(mineCount) - 20)) { // right hand corner
-                counter += 1;
+                if ((Integer.parseInt(mineCount)+1) % 21 == 0) {
+                    counter += 0;
+                }
+                else if (Integer.parseInt(mineCount) < 295) { // checks if first row
+                    counter += 0;
+                }
+                else {
+                    counter += 1;
+                }
             }
             if (mineLoc.contains(Integer.parseInt(mineCount) - 1)) {
-                counter += 1;
+                if((Integer.parseInt(mineCount)) % 21 == 0) { // checks if first row
+                    counter += 0;
+                }
+                else {
+                    counter += 1;
+                }
             }
             if (mineLoc.contains(Integer.parseInt(mineCount) + 1)) { // left hand bottom corner
-                counter += 1;
+                if ((Integer.parseInt(mineCount)+1) % 21 == 0) { // checks if last column
+                    counter += 0;
+                }
+                else {
+                    counter += 1;
+                }
             }
             if (mineLoc.contains(Integer.parseInt(mineCount) + 20)) {
-                counter += 1;
+                if(Integer.parseInt(mineCount) > 797 && Integer.parseInt(mineCount) < 819) { // checks last row
+                    counter += 0;
+                }
+                else if((Integer.parseInt(mineCount)) % 21 == 0) { // checks first column
+                    counter += 0;
+                }
+                else{
+                    counter += 1;
+                }
             }
             if (mineLoc.contains(Integer.parseInt(mineCount) + 21)) { // right hand bottom corner
-                counter += 1;
+                if(Integer.parseInt(mineCount) > 797 && Integer.parseInt(mineCount) < 819) { // checks last row
+                    counter += 0;
+                }
+                else{
+                    counter += 1;
+                }
             }
             if (mineLoc.contains(Integer.parseInt(mineCount) + 22)) {
-                counter += 1;
+                if ((Integer.parseInt(mineCount)+1) % 21 == 0) { // checks last column
+                    counter += 0;
+                }
+                else if(Integer.parseInt(mineCount) > 797 && Integer.parseInt(mineCount) < 819) { // checks last row
+                    counter += 0;
+                }
+                else {
+                    counter += 1;
+                }
             }
         }
 
@@ -534,55 +637,55 @@ class MineSetup implements ActionListener  {
      * @author Karson Hodge
      */
     public void explosionMine(){
-        if(difficulty == "easy") {
-            for (int i = 3; i < 57; i++) {
+        if(difficulty == "easy") { // difficulty setting
+            for (int i = 3; i < 57; i++) { // loop how many buttons
                 if(!mineLoc.contains(Integer.parseInt(buttons[i].getActionCommand())) && buttons[i].getBackground() == Color.RED){
                     buttons[i].setBackground(null);
-                    buttons[i].setForeground(Color.RED);
-                    buttons[i].setText("X");
+                    buttons[i].setForeground(Color.RED); // change to red
+                    buttons[i].setText("X"); // set X if user missed a mine
                 }
                 else if (mineLoc.contains(Integer.parseInt(buttons[i].getActionCommand())) && buttons[i].getBackground() == Color.RED) {
-                    buttons[i].setBackground(null);
-                    buttons[i].setIcon(new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("land-mine.png"))));
+                    buttons[i].setBackground(null); // set to default
+                    buttons[i].setIcon(new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("land-mine.png")))); // show landmine image
                 }
                 else if (mineLoc.contains(Integer.parseInt(buttons[i].getActionCommand()))) {
-                    buttons[i].setIcon(new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("explosion-boom.gif"))));
+                    buttons[i].setIcon(new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("explosion-boom.gif")))); // play explosion gif for rest
                 }
 
             }
         }
 
-        else if(difficulty == "medium"){
-            for (int i = 57; i < 273; i++) {
+        else if(difficulty == "medium"){ // medium button
+            for (int i = 57; i < 273; i++) { // loop through medium button amount
                 if(!mineLoc.contains(Integer.parseInt(buttons[i].getActionCommand())) && buttons[i].getBackground() == Color.RED){
-                    buttons[i].setBackground(null);
+                    buttons[i].setBackground(null); // set background to default
                     buttons[i].setForeground(Color.RED);
-                    buttons[i].setText("X");
+                    buttons[i].setText("X"); // set X for missed mines
                 }
                 else if (mineLoc.contains(Integer.parseInt(buttons[i].getActionCommand())) && buttons[i].getBackground() == Color.RED) {
-                    buttons[i].setBackground(null);
-                    buttons[i].setIcon(new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("land-mine.png"))));
+                    buttons[i].setBackground(null); // default button
+                    buttons[i].setIcon(new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("land-mine.png")))); // image of landmine
                 }
                 else if (mineLoc.contains(Integer.parseInt(buttons[i].getActionCommand()))) {
-                    buttons[i].setIcon(new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("explosion-boom.gif"))));
+                    buttons[i].setIcon(new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("explosion-boom.gif")))); // play the landmine gif
                 }
 
             }
         }
 
         else if(difficulty == "hard"){
-            for (int i = 273; i < 819; i++) {
+            for (int i = 273; i < 819; i++) { // loop through hard mode buttons
                 if(!mineLoc.contains(Integer.parseInt(buttons[i].getActionCommand())) && buttons[i].getBackground() == Color.RED){
                     buttons[i].setBackground(null);
-                    buttons[i].setForeground(Color.RED);
-                    buttons[i].setText("X");
+                    buttons[i].setForeground(Color.RED); // change foreground to red
+                    buttons[i].setText("X"); // set X as text
                 }
                 else if (mineLoc.contains(Integer.parseInt(buttons[i].getActionCommand())) && buttons[i].getBackground() == Color.RED) {
-                    buttons[i].setBackground(null);
-                    buttons[i].setIcon(new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("land-mine.png"))));
+                    buttons[i].setBackground(null); // background default
+                    buttons[i].setIcon(new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("land-mine.png")))); // landmine png
                 }
                 else if (mineLoc.contains(Integer.parseInt(buttons[i].getActionCommand()))) {
-                    buttons[i].setIcon(new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("explosion-boom.gif"))));
+                    buttons[i].setIcon(new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("explosion-boom.gif")))); // play explosion gif
                 }
 
             }
@@ -622,52 +725,52 @@ class MineSetup implements ActionListener  {
      */
     public void winner() {
         int countButton = 0;
-        if (difficulty == "easy") {
-            for (int i = 3; i < 57; i++) {
+        if (difficulty == "easy") { // difficulty level
+            for (int i = 3; i < 57; i++) { // loop through enabled buttons
                 if(buttons[i].isEnabled()){
                     countButton += 1;
                 }
             }
-            if(countButton == 11){
+            if(countButton == 11){ // if 11 remain, user wins
                 JOptionPane.showMessageDialog(frame, "You Win");
                 task1.cancel();
-                task2.cancel();
+                task2.cancel(); // cancel timers
                 task3.cancel();
-                frame.remove(label[1]);
+                frame.remove(label[1]); // remove the label from frame
                 leftRight = false;
-                mainMenu();
+                mainMenu(); // run the mainmenu function
             }
         }
-        else if(difficulty == "medium"){
+        else if(difficulty == "medium"){ // difficulty level
             for (int i = 57; i < 273; i++) {
-                if(buttons[i].isEnabled()){
+                if(buttons[i].isEnabled()){ // checks if the button is enabled
                     countButton += 1;
                 }
             }
-            if(countButton == 36){
+            if(countButton == 36){ // if 36, user wins
                 JOptionPane.showMessageDialog(frame, "You Win");
                 task1.cancel();
-                task2.cancel();
+                task2.cancel(); // cancel timers
                 task3.cancel();
                 frame.remove(label[1]);
-                leftRight = false;
-                mainMenu();
+                leftRight = false; // left click false
+                mainMenu(); // return mainmenu
             }
         }
         else if(difficulty == "hard"){
-            for (int i = 273; i < 819; i++) {
+            for (int i = 273; i < 819; i++) { // loops through hard mode buttons
                 if(buttons[i].isEnabled()){
                     countButton += 1;
                 }
             }
-            if(countButton == 92){
+            if(countButton == 92){ // if 92 remain, user wins
                 JOptionPane.showMessageDialog(frame, "You Win");
                 task1.cancel();
-                task2.cancel();
+                task2.cancel(); // timer canceled
                 task3.cancel();
-                frame.remove(label[1]);
+                frame.remove(label[1]); // remove label
                 leftRight = false;
-                mainMenu();
+                mainMenu(); // return the mainMenu function
             }
         }
 
