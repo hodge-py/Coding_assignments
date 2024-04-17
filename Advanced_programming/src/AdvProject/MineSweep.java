@@ -88,7 +88,6 @@ class MineSetup implements ActionListener  {
             buttons[i].addMouseListener(new MouseAdapter() {
                 public void mousePressed(MouseEvent me) {
                     if(me.getButton() == MouseEvent.BUTTON1){
-                        System.out.println("left click");
                         leftRight = true;
                     }
                     else{
@@ -110,6 +109,7 @@ class MineSetup implements ActionListener  {
     /**
      * middle mode setting, 180 seconds, 36 mines
      *
+     * @author Karson Hodge
      */
     public void middleMode(){
         difficulty = "medium";
