@@ -19,9 +19,9 @@ import java.util.concurrent.ThreadLocalRandom;
 public class MineSweep {
 
     public static void main(String[] args) {
-        MineSetup mineObj = new MineSetup();
+        MineSetup mineObj = new MineSetup(); // new instance of the MineSetup class
 
-        mineObj.setup();
+        mineObj.setup(); // runs the whole game
 
 
     }
