@@ -19,7 +19,7 @@ public class Smile {
 
 class Drawer extends JPanel {
     public JFrame frame = new JFrame("Smiley");
-    public Graphics2D g2 = (Graphics2D)g;
+    public Graphics2D g2;
 
     public void setup(){
         frame.setSize(500,500);
@@ -32,11 +32,14 @@ class Drawer extends JPanel {
         frame.addMouseMotionListener( new MouseMotionAdapter() {
             public void mouseMoved(MouseEvent e) {
                 System.out.println(e.getLocationOnScreen());
+
             }
         });
 
 
     }
+
+
 
     public void paintComponent(Graphics g){
         super.paintComponent(g);
