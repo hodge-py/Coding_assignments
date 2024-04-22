@@ -28,6 +28,9 @@ class Drawer extends JPanel {
     }
 
     public void paintComponent(Graphics g){
+        g.setColor(Color.black);
+        g.drawArc(95,95,260,260,0,360);
+        g.fillArc(95,95,260,260,0,360);
         g.setColor(Color.yellow);
         //Draw and fill the face
         g.drawArc(100,100,250,250,0,360);
@@ -35,13 +38,15 @@ class Drawer extends JPanel {
         //Change color to black
         g.setColor(Color.black);
         //Draw the left eye
-        g.drawArc(170,185,25,25,0,360);
-        g.fillArc(170,185,25,25,0,360);
+        g.drawOval(170,185,25,40);
+        g.fillArc(170,185,25,40,0,360);
         //Draw the right eye
-        g.drawArc(255,185,25,25,0,360);
-        g.fillArc(255,185,25,25,0,360);
+        g.drawOval(255,185,25,40);
+        g.fillArc(255,185,25,40,0,360);
         //Draw the smile
         g.drawArc(150,215,150,100,0,-180);
+
+        g.drawLine(140,265,160,265);
     }
 
 }
