@@ -1,20 +1,20 @@
 // Karson Hodge, MCIS-Adv Programming Concepts, Section 34, ID: 9999-03235
 import javax.sound.sampled.*;
-import javax.swing.*;
+import javax.swing.*; // swing import
 import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
+import java.io.File; // reading files
 import java.io.IOException;
 import java.util.*;
-import java.awt.event.MouseAdapter;
+import java.awt.event.MouseAdapter; // mouse commands
 import java.util.Timer;
-import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.ThreadLocalRandom; // used for random variables
 
 
 /**
  * main class that provides the instance for the game class and then runs the main program to build it
  *
- * @author
+ * @author Karson Hodge
  */
 public class MineSweep {
 
@@ -632,7 +632,7 @@ class MineSetup implements ActionListener  {
 
 
     /**
-     * function that is ran when a mine exploded. red X's for missed mines, mines if marked correctly and explosion sound and animation
+     * function that runs when a mine exploded. red X's for missed mines, mines if marked correctly and explosion sound and animation
      *
      * @author Karson Hodge
      */
